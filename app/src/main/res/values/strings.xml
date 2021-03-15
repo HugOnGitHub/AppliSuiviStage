@@ -7,4 +7,17 @@
     <string name="saisieMdp">MOT DE PASSE</string>
     <string name="btnSeConnecter">SE CONNECTER</string>
     <string name="btnSeDeconnecter">SE DECONNECTER</string>
+    <string name="saisieTuteurPedag">Tuteur pédagogique</string>
+    <string name="saisieMail">Mail</string>
+    <string name="saisieDateVisite">Date de la visite</string>
+    <string name="saisieEntreprise">Entreprise</string>
+    <string name="saisieDivers">Divers</string>
+    <string name="saisieTuteurEntrep">Tuteur entreprise</string>
+    <string name="saisieTelephone">Téléphone</string>
+    <string name="saisieNomStagiaire">Nom du stagiaire</string>
+    <string name="saisiePrenom">Prénom</string>
+    <string name="rapportVisite">RAPPORT VISITE DE STAGE</string>
+    <string name="btnSuivant">SUIVANT</string>
+    <string name="btnAnnuler">ANNULER</string>
+    <string name="btnAfficher">AFFICHER</string>
 </resources>
