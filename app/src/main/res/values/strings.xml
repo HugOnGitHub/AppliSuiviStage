@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Appli Fiche Suivi</string>
+    <string name="buttonAfficherStages">AFFICHER STAGES</string>
+    <string name="buttonFicheSuivi">FICHE SUIVI</string>
+    <string name="buttonMajBDD">MAJ BDD</string>
+    <string name="saisieIdentifiant">IDENTIFIANT</string>
+    <string name="saisieMdp">MOT DE PASSE</string>
+    <string name="btnSeConnecter">SE CONNECTER</string>
+    <string name="btnSeDeconnecter">SE DECONNECTER</string>
+</resources>
