@@ -15,8 +15,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //on associe à un objet java de type Button, un widget repéré physiquement par son id
         Button btnAfficherStages = findViewById(R.id.btnAfficherStages);
-        Button btnFicheSuivi = findViewById(R.id.btnFicheSuivi);
-        Button btnMajBDD = findViewById(R.id.btnMajBDD);
         //on place un écouteur dessus
         View.OnClickListener ecouteur = new View.OnClickListener() {
             //on implémente la méthode onclick
@@ -24,18 +22,35 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.btnAfficherStages:
-
-                    case R.id.btnFicheSuivi:
-
-                    case R.id.btnMajBDD:
-
+                        Intent intent2 = new Intent(MainActivity.this, AfficherStagesActivity.class);
+                        startActivity(intent2);
+                        break;
                 }
             }
         };
         //on affecte au bouton l'écouteur
         btnAfficherStages.setOnClickListener(ecouteur);
-        btnFicheSuivi.setOnClickListener(ecouteur);
-        btnMajBDD.setOnClickListener(ecouteur);
+
+        remplirTableEtudiant();
         }
+
+    public void remplirTableEtudiant() {
+        DAOBdd etudiantBdd = new DAOBdd(this);
+        Etudiant etudiant1 = new Etudiant("Sourice", "Clémentin", "2SLAM", "2021");
+        Etudiant etudiant2 = new Etudiant("Dabin", "Hugo", "2SLAM", "2021");
+        Etudiant etudiant3 = new Etudiant("Moinard", "Florian", "2SLAM", "2021");
+        Etudiant etudiant4 = new Etudiant("Guyon", "Carmin", "2SLAM", "2021");
+        //on ouvre la base de données
+        etudiantBdd.open();
+        //on insère etudiant1, etudiant2 puis etudiant3
+        etudiantBdd.insererEtudiant(etudiant1);
+        etudiantBdd.insererEtudiant(etudiant2);
+        etudiantBdd.insererEtudiant(etudiant3);
+        etudiantBdd.insererEtudiant(etudiant4);
+        //le curseur pour afficher le nombre de lacs dans la base
+        Cursor c = etudiantBdd.getDataEtudiant();
+        Toast.makeText(getApplicationContext(), " il y a " +
+                String.valueOf(c.getCount()) + " etudiants ", Toast.LENGTH_LONG).show();
+    }
 
 }
