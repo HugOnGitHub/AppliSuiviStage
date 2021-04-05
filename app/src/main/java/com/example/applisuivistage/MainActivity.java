@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //on associe à un objet java de type Button, un widget repéré physiquement par son id
         Button btnAfficherStages = findViewById(R.id.btnAfficherStages);
+        Button btnFicheSuivi = findViewById(R.id.btnFicheSuivi);
         //on place un écouteur dessus
         View.OnClickListener ecouteur = new View.OnClickListener() {
             //on implémente la méthode onclick
@@ -22,7 +23,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.btnAfficherStages:
-                        Intent intent2 = new Intent(MainActivity.this, AfficherStagesActivity.class);
+                        Intent intent1 = new Intent(MainActivity.this, AfficherStagesActivity.class);
+                        startActivity(intent1);
+                        break;
+                    case R.id.btnFicheSuivi:
+                        Intent intent2 = new Intent(MainActivity.this, FicheSuiviActivity.class);
                         startActivity(intent2);
                         break;
                 }
@@ -30,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         };
         //on affecte au bouton l'écouteur
         btnAfficherStages.setOnClickListener(ecouteur);
+        btnFicheSuivi.setOnClickListener(ecouteur);
 
         remplirTableEtudiant();
         }
