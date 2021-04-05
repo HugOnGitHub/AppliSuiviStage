@@ -39,7 +39,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/editTextTuteur"
+            android:id="@+id/editTextTuteurPedag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -87,7 +87,7 @@
             android:hint="@string/saisieTuteurEntrep" />
 
         <EditText
-            android:id="@+id/editTextTelephone"
+            android:id="@+id/editTextTelEntrep"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

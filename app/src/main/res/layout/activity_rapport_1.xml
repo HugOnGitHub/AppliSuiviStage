@@ -39,37 +39,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/editTextNomStagiaire"
+        <Spinner
+            android:id="@+id/spinnerEleve"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="@string/saisieNomStagiaire" />
-
-        <EditText
-            android:id="@+id/editTextPrenom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="@string/saisiePrenom" />
+            android:layout_weight="1" />
 
         <CheckedTextView
-            android:id="@+id/checkedTextView"
+            android:id="@+id/checkedTextViewAnnee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:background="#7B7474"
-            android:text="2021" />
+            android:background="#7B7474"/>
 
         <CheckedTextView
-            android:id="@+id/checkedTextView2"
+            android:id="@+id/checkedTextViewClasse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="#7B7474"
-            android:text="2SLAM" />
+            android:background="#7B7474"/>
 
     </LinearLayout>
 
@@ -87,20 +75,22 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <RadioGroup
+            android:id="@+id/radioSpecialite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <RadioButton
-                android:id="@+id/radioButton"
+                android:id="@+id/radioSLAM"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Spécialité SISR (Administrateur Réseau)" />
 
             <RadioButton
-                android:id="@+id/radioButton2"
+                android:id="@+id/radioSISR"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Spécialité SLAM (Développer)" />
+                android:text="Spécialité SLAM (Développeur)"
+                android:checked="true" />
         </RadioGroup>
 
 
