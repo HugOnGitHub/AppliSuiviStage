@@ -9,8 +9,16 @@ public class Visite {
     protected String Jury;
     protected String Opportunite;
     protected String SIOpportunite;
+    protected int _idTuteur;
+    protected int _idProfesseur;
+    protected int _idEtudiant;
+    protected int _idEntreprise;
 
-    public Visite(String dateVisite, String conditions, String bilan, String ressources, String conclusion, String jury, String opportunite, String siopportunite) {
+    public Visite(int _idtuteur, int _idprofesseur, int _idetudiant, int _identreprise, String dateVisite, String conditions, String bilan, String ressources, String conclusion, String jury, String opportunite, String siopportunite) {
+        _idTuteur = _idtuteur;
+        _idProfesseur = _idprofesseur;
+        _idEtudiant = _idetudiant;
+        _idEntreprise = _identreprise;
         DateVisite = dateVisite;
         Conditions = conditions;
         Bilan = bilan;
@@ -53,6 +61,22 @@ public class Visite {
         return SIOpportunite;
     }
 
+    public int get_idTuteur() {
+        return _idTuteur;
+    }
+
+    public int get_idProfesseur() {
+        return _idProfesseur;
+    }
+
+    public int get_idEtudiant() {
+        return _idEtudiant;
+    }
+
+    public int get_idEntreprise() {
+        return _idEntreprise;
+    }
+
 
     public void setDateVisite(String dateVisite) {
         DateVisite = dateVisite;
@@ -81,4 +105,12 @@ public class Visite {
     }
 
     public void setSIOpportunite(String siopportunite) { SIOpportunite = siopportunite; }
+
+    public void set_idTuteur(int _idtuteur) { _idTuteur = _idtuteur; }
+
+    public void set_idProfesseur(int _idprofesseur) { _idProfesseur = _idprofesseur; }
+
+    public void set_idEtudiant(int _idetudiant) { _idEtudiant = _idetudiant; }
+
+    public void set_idEntreprise(int _identreprise) { _idEntreprise = _identreprise; }
 }

@@ -31,7 +31,8 @@ public class FicheSuiviActivity extends Activity {
         //on déclare en final les données passées à l'autre interface
         final TextView annee = findViewById(R.id.checkedTextViewAnnee);
         final TextView classe = findViewById(R.id.checkedTextViewClasse);
-        final String[] leEleve = new String[1];
+        final String[] leNom = new String[1];
+        final String[] lePrenom = new String[1];
         RadioGroup rg = (RadioGroup) findViewById(R.id.radioSpecialite);
         final String selectedRadioValue =((RadioButton)findViewById(rg.getCheckedRadioButtonId() )).getText().toString();
         Toast.makeText(FicheSuiviActivity.this, "Vous avez choisi : " + "\nla specialité : " + selectedRadioValue, Toast.LENGTH_SHORT).show();
@@ -47,7 +48,8 @@ public class FicheSuiviActivity extends Activity {
                     case R.id.btnSuivant:
                         //on passer les infos dans l'autre interface
                         Intent i = new Intent(FicheSuiviActivity.this, FicheSuiviActivity2.class);
-                        i.putExtra("EXTRA_Eleve",leEleve[0]);
+                        i.putExtra("EXTRA_Nom",leNom[0]);
+                        i.putExtra("EXTRA_Prenom",lePrenom[0]);
                         i.putExtra("EXTRA_Annee",annee.getText().toString());
                         i.putExtra("EXTRA_Classe",classe.getText().toString());
                         i.putExtra("EXTRA_Specialite",selectedRadioValue);
@@ -62,21 +64,21 @@ public class FicheSuiviActivity extends Activity {
         btnSuivant.setOnClickListener((ecouteur));
         btnAnnuler.setOnClickListener((ecouteur));
 
-        //gestion de la liste déroulante des lacs
-        final Spinner spinnerEleve = (Spinner) findViewById(R.id.spinnerEleve);
-        String[] leseleves={"Florian Moinard", "Carmin Guyon", "Hugo Dabin", "Clémentin Sourice"};
+        //gestion de la liste déroulante des prenoms
+        final Spinner spinnerPrenomEleve = (Spinner) findViewById(R.id.spinnerPrenomEleve);
+        String[] lesprenoms={"Florian Moinard", "Carmin Guyon", "Hugo Dabin", "Clémentin Sourice"};
         ArrayAdapter<String> dataAdapterR = new ArrayAdapter <String>( this ,
-                android.R.layout.simple_spinner_item ,leseleves );
+                android.R.layout.simple_spinner_item ,lesprenoms );
         dataAdapterR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item
         );
-        spinnerEleve.setAdapter(dataAdapterR);
-        spinnerEleve.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerPrenomEleve.setAdapter(dataAdapterR);
+        spinnerPrenomEleve.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void
             onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                leEleve[0] =
-                        String.valueOf(spinnerEleve.getSelectedItem());
+                lePrenom[0] =
+                        String.valueOf(spinnerPrenomEleve.getSelectedItem());
 
-                Toast.makeText(FicheSuiviActivity.this, "Vous avez choisi : " + "\nl'eleve : " + leEleve[0], Toast.LENGTH_SHORT).show();
+                Toast.makeText(FicheSuiviActivity.this, "Vous avez choisi : " + "\nle prenom : " + lePrenom[0], Toast.LENGTH_SHORT).show();
             }
 
 
@@ -86,5 +88,28 @@ public class FicheSuiviActivity extends Activity {
             }
         });
 
+        //gestion de la liste déroulante des noms
+        final Spinner spinnerNomEleve = (Spinner) findViewById(R.id.spinnerNomEleve);
+        String[] lesnoms={"Moinard", "Carmin Guyon", "Hugo Dabin", "Clémentin Sourice"};
+        ArrayAdapter<String> dataAdapterR2 = new ArrayAdapter <String>( this ,
+                android.R.layout.simple_spinner_item ,lesnoms );
+        dataAdapterR2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item
+        );
+        spinnerNomEleve.setAdapter(dataAdapterR2);
+        spinnerNomEleve.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void
+            onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                leNom[0] =
+                        String.valueOf(spinnerNomEleve.getSelectedItem());
+
+                Toast.makeText(FicheSuiviActivity.this, "Vous avez choisi : " + "\nle nom : " + leNom[0], Toast.LENGTH_SHORT).show();
+            }
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //cas où rien n'est sélectionné dans la liste
+            }
+        });
     }
 }
