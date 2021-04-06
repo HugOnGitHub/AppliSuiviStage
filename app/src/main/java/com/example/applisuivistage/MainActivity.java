@@ -4,15 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class MainActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        StrictMode.enableDefaults();
+        OkHttpClient Etudiant = new OkHttpClient();
+        Request requestClients = new Request.Builder().url("http://192.168.56.1/apiClient/getAllClientsJSON.php").build();
         //on associe à un objet java de type Button, un widget repéré physiquement par son id
         Button btnAfficherStages = findViewById(R.id.btnAfficherStages);
         Button btnFicheSuivi = findViewById(R.id.btnFicheSuivi);

@@ -46,4 +46,9 @@ public class Etudiant {
         Annee = annee;
     }
 
+    public String toString() {
+        return (Nom + '\t'+'\t'+'\t' + Prenom );
+    }
+
 }
+
