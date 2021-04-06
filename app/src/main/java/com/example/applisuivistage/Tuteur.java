@@ -1,24 +1,18 @@
 package com.example.applisuivistage;
 
 public class Tuteur {
-    protected String Nom;
-    protected String Prenom;
+    protected String Tuteur;
     protected String Email;
     protected String NumTel;
 
-    public Tuteur(String nom, String prenom, String email, String numTel) {
-        Nom = nom;
-        Prenom = prenom;
+    public Tuteur(String tuteur, String email, String numTel) {
+        Tuteur = tuteur;
         Email = email;
         NumTel = numTel;
     }
 
-    public String getNom() {
-        return Nom;
-    }
-
-    public String getPrenom() {
-        return Prenom;
+    public String getTuteur() {
+        return Tuteur;
     }
 
     public String getEmail() {
@@ -29,12 +23,8 @@ public class Tuteur {
         return NumTel;
     }
 
-    public void setNom(String nom) {
-        Nom = nom;
-    }
-
-    public void setPrenom(String prenom) {
-        Prenom = prenom;
+    public void setTuteur(String tuteur) {
+        Tuteur = tuteur;
     }
 
     public void setEmail(String email) {

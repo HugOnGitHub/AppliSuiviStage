@@ -56,6 +56,18 @@ public class DAOBdd {
         return db.rawQuery("SELECT * FROM Etudiant", null);
     }
     public Cursor getListeEtudiants(){
-        return db.rawQuery("SELECT * FROM " + TABLE_ETUDIANT + "", null);
+        return db.rawQuery("SELECT " + COL_IDETUDIANT + " FROM " + TABLE_ETUDIANT +" WHERE " + COL_NOM + " =\"" + nom +"\"", null);
+    }
+    public Cursor getUnTuteur(){
+        return db.rawQuery("SELECT " + COL_IDETUDIANT + " FROM " + TABLE_ETUDIANT +" WHERE " + COL_NOM + " =\"" + nom +"\"", null);
+    }
+    public Cursor getUnProfesseur(){
+        return db.rawQuery("SELECT " + COL_IDETUDIANT + " FROM " + TABLE_ETUDIANT +" WHERE " + COL_NOM + " =\"" + nom +"\"", null);
+    }
+    public Cursor getUnEtudiant(String nom, String prenom){
+        return db.rawQuery("SELECT " + COL_IDETUDIANT + " FROM " + TABLE_ETUDIANT +" WHERE " + COL_NOM + " =\"" + nom + "\" AND " + COL_PRENOM + " =\"" + prenom +"\"", null);
+    }
+    public Cursor getUneEntreprise(){
+        return db.rawQuery("SELECT " + COL_IDETUDIANT + " FROM " + TABLE_ETUDIANT +" WHERE " + COL_NOM + " =\"" + nom +"\"", null);
     }
 }

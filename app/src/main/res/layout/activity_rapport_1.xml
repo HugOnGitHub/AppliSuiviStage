@@ -40,7 +40,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Spinner
-            android:id="@+id/spinnerEleve"
+            android:id="@+id/spinnerNomEleve"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Spinner
+            android:id="@+id/spinnerPrenomEleve"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />

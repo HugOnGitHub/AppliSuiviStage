@@ -48,6 +48,7 @@
 
 
         <RadioGroup
+            android:id="@+id/radioParticipMaitreStage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -73,6 +74,7 @@
             android:text="Opportunité de stage" />
 
         <RadioGroup
+            android:id="@+id/radioOpportunite"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -98,6 +100,7 @@
             android:text="si oui :" />
 
         <RadioGroup
+            android:id="@+id/radioSiOpportunite"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -106,13 +109,13 @@
                 android:id="@+id/radioButtonMaiJuin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Oui" />
+                android:text="mai-juin 2020" />
 
             <RadioButton
                 android:id="@+id/radioButtonJanvierFevrier"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Non" />
+                android:text="janvier-février 2021" />
         </RadioGroup>
 
 
@@ -133,7 +136,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/btnSuivant"
+            android:id="@+id/btnEnregistrer"
             style="@style/stylebouton"
             android:layout_width="236dp"
             android:layout_height="2dp"
@@ -142,7 +145,7 @@
             android:layout_weight="1"
             android:background="@drawable/mybutton"
             android:focusedByDefault="false"
-            android:text="@string/btnSuivant" />
+            android:text="@string/btnEnregistrer" />
 
         <Button
             android:id="@+id/btnAnnuler"

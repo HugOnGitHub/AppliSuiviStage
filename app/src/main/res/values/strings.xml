@@ -20,4 +20,5 @@
     <string name="btnSuivant">SUIVANT</string>
     <string name="btnAnnuler">ANNULER</string>
     <string name="btnAfficher">AFFICHER</string>
+    <string name="btnEnregistrer">ENREGISTRER</string>
 </resources>

@@ -20,7 +20,7 @@ public class FicheSuiviActivity3 extends Activity {
 
         Intent intent2 = getIntent();
         Toast.makeText(FicheSuiviActivity3.this, "Vous avez choisi : " + "\nla specialité : " + intent2.getStringExtra("EXTRA_Specialite"), Toast.LENGTH_SHORT).show();
-        Toast.makeText(FicheSuiviActivity3.this, "Vous avez choisi : " + "\nla specialité : " + intent2.getStringExtra("EXTRA_Eleve"), Toast.LENGTH_SHORT).show();
+        Toast.makeText(FicheSuiviActivity3.this, "Vous avez choisi : " + "\nla specialité : " + intent2.getStringExtra("EXTRA_Nom"), Toast.LENGTH_SHORT).show();
 
         Button btnSuivant = (Button) findViewById(R.id.btnSuivant);
         Button btnAnnuler = (Button) findViewById(R.id.btnAnnuler);
@@ -34,7 +34,8 @@ public class FicheSuiviActivity3 extends Activity {
                         //on passer les infos dans l'autre interface
                         Intent intent = getIntent();
                         Intent i = new Intent(FicheSuiviActivity3.this, FicheSuiviActivity4.class);
-                        i.putExtra("EXTRA_Eleve",intent.getStringExtra("EXTRA_Eleve"));
+                        i.putExtra("EXTRA_Nom",intent.getStringExtra("EXTRA_Nom"));
+                        i.putExtra("EXTRA_Prenom",intent.getStringExtra("EXTRA_Prenom"));
                         i.putExtra("EXTRA_Annee",intent.getStringExtra("EXTRA_Annee"));
                         i.putExtra("EXTRA_Classe",intent.getStringExtra("EXTRA_Classe"));
                         i.putExtra("EXTRA_Specialite",intent.getStringExtra("EXTRA_Specialite"));
