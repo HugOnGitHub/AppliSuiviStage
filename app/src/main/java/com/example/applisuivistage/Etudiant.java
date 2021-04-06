@@ -2,24 +2,24 @@ package com.example.applisuivistage;
 
 public class Etudiant {
 
-    protected String Nom;
-    protected String Prenom;
+    protected String NomEtudiant;
+    protected String PrenomEtudiant;
     protected String Classe;
     protected String Annee;
 
-    public Etudiant(String nom, String prenom, String classe, String annee) {
-        Nom = nom;
-        Prenom = prenom;
+    public Etudiant(String nomEtudiant, String prenomEtudiant, String classe, String annee) {
+        NomEtudiant = nomEtudiant;
+        PrenomEtudiant = prenomEtudiant;
         Classe = classe;
         Annee = annee;
     }
 
-    public String getNom() {
-        return Nom;
+    public String getNomEtudiant() {
+        return NomEtudiant;
     }
 
-    public String getPrenom() {
-        return Prenom;
+    public String getPrenomEtudiant() {
+        return PrenomEtudiant;
     }
 
     public String getClasse() {
@@ -30,12 +30,12 @@ public class Etudiant {
         return Annee;
     }
 
-    public void setNom(String nom) {
-        Nom = nom;
+    public void setNomEtudiant(String nomEtudiant) {
+        NomEtudiant = nomEtudiant;
     }
 
-    public void setPrenom(String prenom) {
-        Prenom = prenom;
+    public void setPrenomEtudiant(String prenomEtudiant) {
+        PrenomEtudiant = prenomEtudiant;
     }
 
     public void setClasse(String classe) {
@@ -47,7 +47,7 @@ public class Etudiant {
     }
 
     public String toString() {
-        return (Nom + '\t'+'\t'+'\t' + Prenom );
+        return (NomEtudiant + '\t'+'\t'+'\t' + PrenomEtudiant );
     }
 
 }

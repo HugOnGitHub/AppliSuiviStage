@@ -4,13 +4,13 @@ public class Professeur {
     protected String Nom;
     protected String Prenom;
     protected String Email;
-    protected String NumTel;
+    protected String NumTelProf;
 
-    public Professeur(String nom, String prenom, String email, String numTel) {
+    public Professeur(String nom, String prenom, String email, String numTelProf) {
         Nom = nom;
         Prenom = prenom;
         Email = email;
-        NumTel = numTel;
+        NumTelProf = numTelProf;
     }
 
     public String getNom() {
@@ -25,8 +25,8 @@ public class Professeur {
         return Email;
     }
 
-    public String getNumTel() {
-        return NumTel;
+    public String getNumTelProf() {
+        return NumTelProf;
     }
 
     public void setNom(String nom) {
@@ -41,5 +41,5 @@ public class Professeur {
         Email = email;
     }
 
-    public void setNumTel(String numTel) { NumTel = numTel; }
+    public void setNumTelProf(String numTelProf) { NumTelProf = numTelProf; }
 }
