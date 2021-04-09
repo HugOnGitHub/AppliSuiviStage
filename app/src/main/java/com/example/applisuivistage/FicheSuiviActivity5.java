@@ -78,7 +78,7 @@ public class FicheSuiviActivity5 extends Activity {
             ressourcesOutils= intent.getStringExtra("EXTRA_RessourcesOutils");
             commentairesAppreciations= intent.getStringExtra("EXTRA_CommentairesAppreciations");
         }
-
+/***
         final DAOBdd FicheSuiviBdd = new DAOBdd(this);
         FicheSuiviBdd.open();
         Cursor c = FicheSuiviBdd.getUnTuteur(nom,prenom);
@@ -136,6 +136,6 @@ public class FicheSuiviActivity5 extends Activity {
                         break;
                 }
             }
-        };
+        };*/
     }
 }

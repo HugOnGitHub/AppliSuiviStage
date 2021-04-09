@@ -22,13 +22,13 @@ public class AfficherStagesActivity extends Activity {
         //On ouvre la table
         stagesBdd.open();
         //on récupère tous les releves via le curseur
-        Cursor c = stagesBdd.getListeEtudiants();
+        Cursor c = stagesBdd.getListeStages();
         Toast.makeText(getApplicationContext(), "il y a " + String.valueOf(c.getCount()) +
-                " etudiants selectionnes", Toast.LENGTH_LONG).show();
+                " stages selectionnes", Toast.LENGTH_LONG).show();
         // colonnes à afficher
-        String[] columns = new String[]{DAOBdd.COL_NOM, DAOBdd.COL_PRENOM};
+        String[] columns = new String[]{DAOBdd.COL_NOMETUDIANT, DAOBdd.COL_PRENOMETUDIANT, DAOBdd.COL_NOMSOCIETE};
         // champs dans lesquelles afficher les colonnes
-        int[] to = new int[]{R.id.textViewNom, R.id.TextViewPrenom};
+        int[] to = new int[]{R.id.textViewNom, R.id.textViewPrenom, R.id.textViewEntreprise};
         //on choisit le type d’adapter pour notre affichage de la liste
         SimpleCursorAdapter dataAdapter = new SimpleCursorAdapter(this,
                 R.layout.activity_afficher_stages, c, columns, to, 0);

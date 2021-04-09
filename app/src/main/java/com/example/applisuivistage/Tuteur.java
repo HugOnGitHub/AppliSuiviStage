@@ -17,9 +17,7 @@ public class Tuteur {
         return NomTuteur;
     }
 
-    public String getPrenomTuteur() {
-        return PrenomTuteur;
-    }
+    public String getPrenomTuteur() { return PrenomTuteur; }
 
     public String getEmailTuteur() {
         return EmailTuteur;

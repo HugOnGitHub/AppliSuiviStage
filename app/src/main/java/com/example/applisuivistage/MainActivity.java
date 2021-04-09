@@ -48,15 +48,36 @@ public class MainActivity extends AppCompatActivity {
         btnAfficherStages.setOnClickListener(ecouteur);
         btnFicheSuivi.setOnClickListener(ecouteur);
 
+        remplirTableEntreprise();
         remplirTableEtudiant();
         }
 
+    public void remplirTableEntreprise() {
+        DAOBdd entrepriseBdd = new DAOBdd(this);
+        Entreprise entreprise1 = new Entreprise("A3WEB", "Rue de Belgique, 49280 La Séguinière", "02 52 45 00 10");
+        Entreprise entreprise2 = new Entreprise("BESYNC", "18 Rue du Moulin des Landes, 44840 Les Sorinières", "02 85 52 61 70");
+        Entreprise entreprise3 = new Entreprise("Rectorat de Nantes", "4 Chemin de la Houssinière, 44300 Nantes", "02 40 37 37 37");
+        Entreprise entreprise4 = new Entreprise("Lycée Briacé", "Pole de Formation Briace, 44430 Le Landreau", "02 40 06 43 33");
+        //on ouvre la base de données
+        entrepriseBdd.open();
+        //on insère etudiant1, etudiant2 puis etudiant3
+        entrepriseBdd.insererEntreprise(entreprise1);
+        entrepriseBdd.insererEntreprise(entreprise2);
+        entrepriseBdd.insererEntreprise(entreprise3);
+        entrepriseBdd.insererEntreprise(entreprise4);
+        //le curseur pour afficher le nombre de lacs dans la base
+        Cursor c = entrepriseBdd.getDataEntreprise();
+        Toast.makeText(getApplicationContext(), " il y a " +
+                String.valueOf(c.getCount()) + " entreprises ", Toast.LENGTH_LONG).show();
+        entrepriseBdd.close();
+    }
+
     public void remplirTableEtudiant() {
         DAOBdd etudiantBdd = new DAOBdd(this);
-        Etudiant etudiant1 = new Etudiant("Sourice", "Clémentin", "2SLAM", "2021");
-        Etudiant etudiant2 = new Etudiant("Dabin", "Hugo", "2SLAM", "2021");
-        Etudiant etudiant3 = new Etudiant("Moinard", "Florian", "2SLAM", "2021");
-        Etudiant etudiant4 = new Etudiant("Guyon", "Carmin", "2SLAM", "2021");
+        Etudiant etudiant1 = new Etudiant(1, "Sourice", "Clémentin", "2SLAM", "2021", "SLAM");
+        Etudiant etudiant2 = new Etudiant(2, "Dabin", "Hugo", "2SLAM", "2021", "SLAM");
+        Etudiant etudiant3 = new Etudiant(3, "Moinard", "Florian", "2SLAM", "2021", "SLAM");
+        Etudiant etudiant4 = new Etudiant(4, "Guyon", "Carmin", "2SLAM", "2021", "SLAM");
         //on ouvre la base de données
         etudiantBdd.open();
         //on insère etudiant1, etudiant2 puis etudiant3
@@ -68,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor c = etudiantBdd.getDataEtudiant();
         Toast.makeText(getApplicationContext(), " il y a " +
                 String.valueOf(c.getCount()) + " etudiants ", Toast.LENGTH_LONG).show();
+        etudiantBdd.close();
     }
 
 }

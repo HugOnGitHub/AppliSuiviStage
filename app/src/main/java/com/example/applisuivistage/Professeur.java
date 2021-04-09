@@ -1,45 +1,45 @@
 package com.example.applisuivistage;
 
 public class Professeur {
-    protected String Nom;
-    protected String Prenom;
-    protected String Email;
-    protected String NumTel;
+    protected String NomProf;
+    protected String PrenomProf;
+    protected String EmailProf;
+    protected String NumTelProf;
 
-    public Professeur(String nom, String prenom, String email, String numTel) {
-        Nom = nom;
-        Prenom = prenom;
-        Email = email;
-        NumTel = numTel;
+    public Professeur(String nomProf, String prenomProf, String emailProf, String numTelProf) {
+        NomProf = nomProf;
+        PrenomProf = prenomProf;
+        EmailProf = emailProf;
+        NumTelProf = numTelProf;
     }
 
-    public String getNom() {
-        return Nom;
+    public String getNomProf() {
+        return NomProf;
     }
 
-    public String getPrenom() {
-        return Prenom;
+    public String getPrenomProf() {
+        return PrenomProf;
     }
 
-    public String getEmail() {
-        return Email;
+    public String getEmailProf() {
+        return EmailProf;
     }
 
-    public String getNumTel() {
-        return NumTel;
+    public String getNumTelProf() {
+        return NumTelProf;
     }
 
-    public void setNom(String nom) {
-        Nom = nom;
+    public void setNomProf(String nomProf) {
+        NomProf = nomProf;
     }
 
-    public void setPrenom(String prenom) {
-        Prenom = prenom;
+    public void setPrenomProf(String prenomProf) {
+        PrenomProf = prenomProf;
     }
 
-    public void setEmail(String email) {
-        Email = email;
+    public void setEmailProf(String emailProf) {
+        EmailProf = emailProf;
     }
 
-    public void setNumTel(String numTel) { NumTel = numTel; }
+    public void setNumTelProf(String numTelProf) { NumTelProf = numTelProf; }
 }

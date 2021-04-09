@@ -4,12 +4,12 @@ public class Entreprise {
 
     protected String NomSociete;
     protected String Adresse;
-    protected String NumTel;
+    protected String NumTelSociete;
 
-    public Entreprise(String nomSociete, String adresse, String numTel) {
+    public Entreprise(String nomSociete, String adresse, String numTelSociete) {
         NomSociete = nomSociete;
         Adresse = adresse;
-        NumTel = numTel;
+        NumTelSociete = numTelSociete;
     }
 
     public String getNomSociete() {
@@ -20,8 +20,8 @@ public class Entreprise {
         return Adresse;
     }
 
-    public String getNumTel() {
-        return NumTel;
+    public String getNumTelSociete() {
+        return NumTelSociete;
     }
 
     public void setNomSociete(String nomSociete) {
@@ -32,8 +32,6 @@ public class Entreprise {
         Adresse = adresse;
     }
 
-    public void setNumTel(String numTel) {
-        NumTel = numTel;
-    }
+    public void setNumTelSociete(String numTelSociete) { NumTelSociete = numTelSociete; }
 
 }
