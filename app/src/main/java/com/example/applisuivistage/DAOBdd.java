@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DAOBdd {
-    static final int VERSION_BDD =11;
+    static final int VERSION_BDD =12;
     private static final String NOM_BDD = "SuiviStageTestBdd.db";
     //table etudiant
     static final String TABLE_ETUDIANT = "Etudiant";

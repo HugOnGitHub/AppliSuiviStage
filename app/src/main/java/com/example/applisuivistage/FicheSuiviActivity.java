@@ -90,37 +90,36 @@ public class FicheSuiviActivity extends Activity {
                         String.valueOf(spinnerNomEleve.getSelectedItem());
 
                 Toast.makeText(FicheSuiviActivity.this, "Vous avez choisi : " + "\nle nom : " + leNom[0], Toast.LENGTH_SHORT).show();
-            }
+                //gestion de la liste déroulante des prenoms
+                Cursor c1 = FicheSuiviBdd.getListePrenomEtudiant(leNom[0]);
+                ArrayList<String> bddPrenomEtudiant = new ArrayList<String>();
+                for(c1.moveToFirst(); !c1.isAfterLast(); c1.moveToNext()) {
+                    // The Cursor is now set to the right position
+                    bddPrenomEtudiant.add(c1.getString(c1.getColumnIndex("PrenomEtudiant")));
+                    Toast.makeText(FicheSuiviActivity.this, "Vous avez choisi : " + "\nle prenom : " + bddPrenomEtudiant, Toast.LENGTH_SHORT).show();
+                }
+
+                final Spinner spinnerPrenomEleve = (Spinner) findViewById(R.id.spinnerPrenomEleve);
+                ArrayAdapter<String> dataAdapterR = new ArrayAdapter <String>(FicheSuiviActivity.this ,
+                        android.R.layout.simple_spinner_item ,bddPrenomEtudiant );
+                dataAdapterR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item
+                );
+                spinnerPrenomEleve.setAdapter(dataAdapterR);
+                spinnerPrenomEleve.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    public void
+                    onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        lePrenom[0] =
+                                String.valueOf(spinnerPrenomEleve.getSelectedItem());
+
+                        Toast.makeText(FicheSuiviActivity.this, "Vous avez choisi : " + "\nle prenom : " + lePrenom[0], Toast.LENGTH_SHORT).show();
+                    }
 
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                //cas où rien n'est sélectionné dans la liste
-            }
-        });
-
-        //gestion de la liste déroulante des prenoms
-        Cursor c1 = FicheSuiviBdd.getListePrenomEtudiant(leNom[0]);
-        ArrayList<String> bddPrenomEtudiant = new ArrayList<String>();
-        for(c1.moveToFirst(); !c1.isAfterLast(); c1.moveToNext()) {
-            // The Cursor is now set to the right position
-            bddPrenomEtudiant.add(c1.getString(c1.getColumnIndex("PrenomEtudiant")));
-            Toast.makeText(FicheSuiviActivity.this, "Vous avez choisi : " + "\nle prenom : " + bddPrenomEtudiant, Toast.LENGTH_SHORT).show();
-        }
-
-        final Spinner spinnerPrenomEleve = (Spinner) findViewById(R.id.spinnerPrenomEleve);
-        ArrayAdapter<String> dataAdapterR = new ArrayAdapter <String>( this ,
-                android.R.layout.simple_spinner_item ,bddPrenomEtudiant );
-        dataAdapterR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item
-        );
-        spinnerPrenomEleve.setAdapter(dataAdapterR);
-        spinnerPrenomEleve.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void
-            onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                lePrenom[0] =
-                        String.valueOf(spinnerPrenomEleve.getSelectedItem());
-
-                Toast.makeText(FicheSuiviActivity.this, "Vous avez choisi : " + "\nle prenom : " + lePrenom[0], Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        //cas où rien n'est sélectionné dans la liste
+                    }
+                });
             }
 
 
