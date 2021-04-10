@@ -18,10 +18,6 @@ public class FicheSuiviActivity4 extends Activity {
         final EditText ressourcesOutils = findViewById(R.id.editRessourcesOutils);
         final EditText commentairesAppreciations = findViewById(R.id.editCommentairesAppreciations);
 
-        Intent intent2 = getIntent();
-        Toast.makeText(FicheSuiviActivity4.this, "Vous avez choisi : " + "\nla specialité : " + intent2.getStringExtra("EXTRA_Specialite"), Toast.LENGTH_SHORT).show();
-        Toast.makeText(FicheSuiviActivity4.this, "Vous avez choisi : " + "\nla specialité : " + intent2.getStringExtra("EXTRA_Nom"), Toast.LENGTH_SHORT).show();
-
         Button btnSuivant = (Button) findViewById(R.id.btnSuivant);
         Button btnAnnuler = (Button) findViewById(R.id.btnAnnuler);
         //on va créer un écouteur pour un groupe de boutons

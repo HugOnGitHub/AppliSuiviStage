@@ -185,6 +185,12 @@ public class DAOBdd {
                 + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
     }
 
+    public Cursor getIDStage(String nom, String prenom){
+        return db.rawQuery("SELECT "+ COL_IDSTAGE +" FROM " + TABLE_STAGE
+                + " STA INNER JOIN " + TABLE_ETUDIANT + " ETUD ON STA."+COL_IDETUDIANT_STAGE+" = ETUD."+COL_IDETUDIANT
+                + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
+    }
+
     public long insererProfesseur (Professeur unProfesseur){
         //Création d'un ContentValues (fonctionne comme une HashMap)
         ContentValues values = new ContentValues();
@@ -246,7 +252,23 @@ public class DAOBdd {
         return db.rawQuery("SELECT * FROM Visite", null);
     }
 
-    public Cursor getUnEtudiant(String nom, String prenom){
-        return db.rawQuery("SELECT " + COL_IDETUDIANT + " FROM " + TABLE_ETUDIANT +" WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
+    public Cursor getIDStageVisite(int _idStageVisite){
+        return db.rawQuery("SELECT "+ COL_IDSTAGE_VISITE +" FROM " + TABLE_VISITE
+                + " WHERE " + COL_IDSTAGE_VISITE + " =\"" + _idStageVisite +"\"", null);
+    }
+
+    public Cursor updateVisite(int _idStageVisite, String dateVisite, String conditionsStages, String bilanTravaux, String ressourcesOutils, String conclusion,
+                               String selectedRadioJury, String selectedRadioOpportunite, String selectedRadioSiOpportunite){
+        return db.rawQuery("UPDATE "+ TABLE_VISITE
+                + "SET " + COL_IDSTAGE_VISITE + " =\"" + _idStageVisite + ", "
+                + COL_DATEVISITE + " =\"" + dateVisite + ", "
+                + COL_CONDITIONS + " =\"" + conditionsStages + ", "
+                + COL_BILAN + " =\"" + bilanTravaux + ", "
+                + COL_RESSOURCES + " =\"" + ressourcesOutils + ", "
+                + COL_CONCLUSION + " =\"" + conclusion + ", "
+                + COL_JURY + " =\"" + selectedRadioJury + ", "
+                + COL_OPPORTUNITE + " =\"" + selectedRadioOpportunite + ", "
+                + COL_SIOPPORTUNITE + " =\"" + selectedRadioSiOpportunite
+                + " WHERE " + COL_IDSTAGE_VISITE + " =\"" + _idStageVisite +"\"", null);
     }
 }

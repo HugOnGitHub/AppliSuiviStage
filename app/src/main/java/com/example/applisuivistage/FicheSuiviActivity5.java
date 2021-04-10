@@ -79,63 +79,63 @@ public class FicheSuiviActivity5 extends Activity {
             commentairesAppreciations= intent.getStringExtra("EXTRA_CommentairesAppreciations");
         }
 /***
-        final DAOBdd FicheSuiviBdd = new DAOBdd(this);
-        FicheSuiviBdd.open();
-        Cursor c = FicheSuiviBdd.getUnTuteur(nom,prenom);
-        c.moveToFirst();
-        int _idTuteur = c.getInt(c.getColumnIndex("_id"));
+ final DAOBdd FicheSuiviBdd = new DAOBdd(this);
+ FicheSuiviBdd.open();
+ Cursor c = FicheSuiviBdd.getUnTuteur(nom,prenom);
+ c.moveToFirst();
+ int _idTuteur = c.getInt(c.getColumnIndex("_id"));
 
-        Cursor c2 = FicheSuiviBdd.getUnProfesseur(nom,prenom);
-        c.moveToFirst();
-        int _idProfesseur = c.getInt(c.getColumnIndex("_id"));
+ Cursor c2 = FicheSuiviBdd.getUnProfesseur(nom,prenom);
+ c.moveToFirst();
+ int _idProfesseur = c.getInt(c.getColumnIndex("_id"));
 
-        Cursor c3 = FicheSuiviBdd.getUnEtudiant(nom,prenom);
-        c.moveToFirst();
-        int _idEtudiant = c.getInt(c.getColumnIndex("_id"));
+ Cursor c3 = FicheSuiviBdd.getUnEtudiant(nom,prenom);
+ c.moveToFirst();
+ int _idEtudiant = c.getInt(c.getColumnIndex("_id"));
 
-        Cursor c4 = FicheSuiviBdd.getUneEntreprise(nom,prenom);
-        c.moveToFirst();
-        int _idEntreprise = c.getInt(c.getColumnIndex("_id"));
+ Cursor c4 = FicheSuiviBdd.getUneEntreprise(nom,prenom);
+ c.moveToFirst();
+ int _idEntreprise = c.getInt(c.getColumnIndex("_id"));
 
-        final Visite uneFiche =  new Visite(_idTuteur, _idProfesseur, _idEtudiant, _idEntreprise, dateVisite, conditionsStages, bilanTravaux, ressourcesOutils, commentairesAppreciations, selectedRadioParticipMaitreStage, selectedRadioOpportunite, selectedRadioSiOpportunite);
-        ListView ListeInfosUnReleve = (ListView) findViewById(R.id.listeInfosUnReleve);
-        List<String> infoReleve = new ArrayList<String>();
-        infoReleve.add("temperature : "+ templu);
-        infoReleve.add("mois : "+ moislu);
-        infoReleve.add("jour : "+ jourlu);
-        infoReleve.add("heure : "+ heurelu);
-        ArrayAdapter<String> adapterReleve = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, infoReleve);
-        ListeInfosUnReleve.setAdapter(adapterReleve);
+ final Visite uneFiche =  new Visite(_idTuteur, _idProfesseur, _idEtudiant, _idEntreprise, dateVisite, conditionsStages, bilanTravaux, ressourcesOutils, commentairesAppreciations, selectedRadioParticipMaitreStage, selectedRadioOpportunite, selectedRadioSiOpportunite);
+ ListView ListeInfosUnReleve = (ListView) findViewById(R.id.listeInfosUnReleve);
+ List<String> infoReleve = new ArrayList<String>();
+ infoReleve.add("temperature : "+ templu);
+ infoReleve.add("mois : "+ moislu);
+ infoReleve.add("jour : "+ jourlu);
+ infoReleve.add("heure : "+ heurelu);
+ ArrayAdapter<String> adapterReleve = new ArrayAdapter<String>(this,
+ android.R.layout.simple_list_item_1, infoReleve);
+ ListeInfosUnReleve.setAdapter(adapterReleve);
 
-        ListView ListeInfosUnLac = (ListView) findViewById(R.id.listeInfosUnLac);
-        List<String> infoLac = new ArrayList<String>();
-        infoLac.add("lac : "+ nomlaclu);
-        infoLac.add("coordonnees longitudinales : "+ coordlonglu);
-        infoLac.add("coordonnees latitudinales : "+ coordlatlu);
-        ArrayAdapter<String> adapterLac = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, infoLac);
-        ListeInfosUnLac.setAdapter(adapterLac);
+ ListView ListeInfosUnLac = (ListView) findViewById(R.id.listeInfosUnLac);
+ List<String> infoLac = new ArrayList<String>();
+ infoLac.add("lac : "+ nomlaclu);
+ infoLac.add("coordonnees longitudinales : "+ coordlonglu);
+ infoLac.add("coordonnees latitudinales : "+ coordlatlu);
+ ArrayAdapter<String> adapterLac = new ArrayAdapter<String>(this,
+ android.R.layout.simple_list_item_1, infoLac);
+ ListeInfosUnLac.setAdapter(adapterLac);
 
-        //programmation du bouton quitter
-        Button btnAnnuler = findViewById(R.id.btnAnnuler);
-        Button btnEnregistrer = findViewById(R.id.btnEnregistrer);
-        //on va créer un écouteur
-        View.OnClickListener ecouteur = new View.OnClickListener() {
-            //on implémente la méthode onclick
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.btnAnnuler:
-                        finish();
-                        break;
-                    case R.id.btnEnregistrer:
-                        FicheSuiviBdd.insererFicheSuivi(uneFiche);
-                        FicheSuiviBdd.close();
-                        finish();
-                        break;
-                }
-            }
-        };*/
+ //programmation du bouton quitter
+ Button btnAnnuler = findViewById(R.id.btnAnnuler);
+ Button btnEnregistrer = findViewById(R.id.btnEnregistrer);
+ //on va créer un écouteur
+ View.OnClickListener ecouteur = new View.OnClickListener() {
+ //on implémente la méthode onclick
+ @Override
+ public void onClick(View v) {
+ switch (v.getId()) {
+ case R.id.btnAnnuler:
+ finish();
+ break;
+ case R.id.btnEnregistrer:
+ FicheSuiviBdd.insererFicheSuivi(uneFiche);
+ FicheSuiviBdd.close();
+ finish();
+ break;
+ }
+ }
+ };*/
     }
 }

@@ -145,7 +145,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <Button
-            android:id="@+id/btnSuivant"
+            android:id="@+id/btnEnregistrer"
             style="@style/stylebouton"
             android:layout_width="250dp"
             android:layout_height="2dp"
@@ -155,7 +155,7 @@
             android:layout_weight="1"
             android:background="@drawable/mybutton"
             android:focusedByDefault="false"
-            android:text="@string/btnSuivant" />
+            android:text="@string/btnEnregistrer" />
 
         <Button
             android:id="@+id/btnAnnuler"
