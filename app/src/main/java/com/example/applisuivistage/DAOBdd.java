@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DAOBdd {
-    static final int VERSION_BDD =12;
+    static final int VERSION_BDD =13;
     private static final String NOM_BDD = "SuiviStageTestBdd.db";
     //table etudiant
     static final String TABLE_ETUDIANT = "Etudiant";
@@ -77,6 +77,9 @@ public class DAOBdd {
     }
     public Cursor getListePrenomEtudiant(String nom){
         return db.rawQuery("SELECT " + COL_PRENOMETUDIANT + " FROM " + TABLE_ETUDIANT + " WHERE " + COL_NOMETUDIANT + " =\"" + nom +"\"", null);
+    }
+    public Cursor getInfosEtudiant(String nom, String prenom){
+        return db.rawQuery("SELECT Annee, Classe, Specialite FROM " + TABLE_ETUDIANT + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
     }
 
     public long insererEntreprise (Entreprise uneEntreprise){

@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         btnAfficherStages.setOnClickListener(ecouteur);
         btnFicheSuivi.setOnClickListener(ecouteur);
 
-        remplirTableEntreprise();
-        remplirTableEtudiant();
+        //remplirTableEntreprise();
+        //remplirTableEtudiant();
         }
 
     public void remplirTableEntreprise() {
@@ -74,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void remplirTableEtudiant() {
         DAOBdd etudiantBdd = new DAOBdd(this);
-        Etudiant etudiant1 = new Etudiant(1, "Sourice", "Clémentin", "2SLAM", "2021", "SLAM");
-        Etudiant etudiant2 = new Etudiant(2, "Dabin", "Hugo", "2SLAM", "2021", "SLAM");
-        Etudiant etudiant3 = new Etudiant(3, "Moinard", "Florian", "2SLAM", "2021", "SLAM");
-        Etudiant etudiant4 = new Etudiant(4, "Guyon", "Carmin", "2SLAM", "2021", "SLAM");
+        Etudiant etudiant1 = new Etudiant(1, "Sourice", "Clémentin", "2SLAM", "2021", "Spécialité SLAM (Développeur)");
+        Etudiant etudiant2 = new Etudiant(2, "Dabin", "Hugo", "2SLAM", "2021", "Spécialité SLAM (Développeur)");
+        Etudiant etudiant3 = new Etudiant(3, "Moinard", "Florian", "2SLAM", "2021", "Spécialité SLAM (Développeur)");
+        Etudiant etudiant4 = new Etudiant(4, "Guyon", "Carmin", "2SLAM", "2021", "Spécialité SISR (Administrateur Réseau)");
         //on ouvre la base de données
         etudiantBdd.open();
         //on insère etudiant1, etudiant2 puis etudiant3

@@ -51,18 +51,24 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <CheckedTextView
-            android:id="@+id/checkedTextViewAnnee"
+        <TextView
+            android:id="@+id/textViewAnnee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:textColor="#4c4e52"
+            android:textSize="18sp"
             android:background="#7B7474"/>
 
-        <CheckedTextView
-            android:id="@+id/checkedTextViewClasse"
+        <TextView
+            android:id="@+id/textViewClasse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:textColor="#4c4e52"
+            android:textSize="18sp"
             android:background="#7B7474"/>
 
     </LinearLayout>
@@ -86,13 +92,13 @@
             android:layout_height="wrap_content">
 
             <RadioButton
-                android:id="@+id/radioSLAM"
+                android:id="@+id/radioSISR"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Spécialité SISR (Administrateur Réseau)" />
 
             <RadioButton
-                android:id="@+id/radioSISR"
+                android:id="@+id/radioSLAM"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Spécialité SLAM (Développeur)"
