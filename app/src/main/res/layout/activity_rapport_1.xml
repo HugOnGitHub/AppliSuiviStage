@@ -7,12 +7,10 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="600dp"
+        android:layout_width="415dp"
+        android:layout_height="53dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout12"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -27,6 +25,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout12"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="60dp"
@@ -56,14 +55,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:background="#7B7474"/>
+            android:background="#7B7474" />
 
         <CheckedTextView
             android:id="@+id/checkedTextViewClasse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="#7B7474"/>
+            android:background="#7B7474" />
 
     </LinearLayout>
 
@@ -103,6 +102,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout11"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="60dp"
