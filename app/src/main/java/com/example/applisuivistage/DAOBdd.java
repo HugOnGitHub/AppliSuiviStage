@@ -6,24 +6,22 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DAOBdd {
-    static final int VERSION_BDD =13;
+    static final int VERSION_BDD =20;
     private static final String NOM_BDD = "SuiviStageTestBdd.db";
     //table etudiant
     static final String TABLE_ETUDIANT = "Etudiant";
     static final String COL_IDETUDIANT = "_id";
     static final int NUM_COL_IDETUDIANT = 0;
-    static final String COL_IDENT_ETUD = "_idEntEtud";
-    static final int NUM_COL_IDENT_ETUD = 1;
     static final String COL_NOMETUDIANT = "NomEtudiant";
-    static final int NUM_COL_NOMETUDIANT = 2;
+    static final int NUM_COL_NOMETUDIANT = 1;
     static final String COL_PRENOMETUDIANT = "PrenomEtudiant";
-    static final int NUM_COL_PRENOMETUDIANT = 3;
+    static final int NUM_COL_PRENOMETUDIANT = 2;
     static final String COL_CLASSE = "Classe";
-    static final int NUM_COL_CLASSE = 4;
+    static final int NUM_COL_CLASSE = 3;
     static final String COL_ANNEE = "Annee";
-    static final int NUM_COL_ANNEE = 5;
+    static final int NUM_COL_ANNEE = 4;
     static final String COL_SPECIALITE = "Specialite";
-    static final int NUM_COL_SPECIALITE = 6;
+    static final int NUM_COL_SPECIALITE = 5;
     //table entreprise
     static final String TABLE_ENTREPRISE = "Entreprise";
     static final String COL_IDENTREPRISE = "_id";
@@ -34,6 +32,68 @@ public class DAOBdd {
     static final int NUM_COL_ADRESSE = 2;
     static final String COL_NUMTELSOCIETE = "NumTelSociete";
     static final int NUM_NUMTELSOCIETE = 3;
+    //table stage
+    static final String TABLE_STAGE = "Stage";
+    static final String COL_IDSTAGE = "_id";
+    static final int NUM_COL_IDSTAGE = 0;
+    static final String COL_IDTUTEUR_STAGE = "_idTuteurStage";
+    static final int NUM_COL_IDTUTEUR_STAGE = 1;
+    static final String COL_IDPROFESSEUR_STAGE = "_idProfesseurStage";
+    static final int NUM_COL_IDPROFESSEUR_STAGE = 2;
+    static final String COL_IDETUDIANT_STAGE = "_idEtudiantStage";
+    static final int NUM_COL_IDETUDIANT_STAGE = 3;
+    static final String COL_IDENTREPRISE_STAGE = "_idEntrepriseStage";
+    static final int NUM_COL_IDENTREPRISE_STAGE = 4;
+    //table professeur
+    static final String TABLE_PROFESSEUR = "Professeur";
+    static final String COL_IDPROFESSEUR = "_id";
+    static final int NUM_COL_IDPROFESSEUR = 0;
+    static final String COL_IDENTITEPROF = "IdentiteProf";
+    static final int NUM_COL_IDENTITEPROF = 1;
+    static final String COL_EMAILPROF = "EmailProf";
+    static final int NUM_COL_EMAILPROF = 2;
+    static final String COL_NUMTELPROF = "NumTelProf";
+    static final int NUM_COL_NUMTELPROF = 3;
+    //table professeur
+    static final String TABLE_TUTEUR = "Tuteur";
+    static final String COL_IDTUTEUR = "_id";
+    static final int NUM_COL_IDTUTEUR = 0;
+    static final String COL_IDENTITETUTEUR = "IdentiteTuteur";
+    static final int NUM_COL_IDENTITETUTEUR = 1;
+    static final String COL_EMAILTUTEUR = "EmailTuteur";
+    static final int NUM_COL_EMAILTUTEUR = 3;
+    static final String COL_NUMTELTUTEUR = "NumTelTuteur";
+    static final int NUM_COL_NUMTELTUTEUR = 4;
+    //table date
+    static final String TABLE_DATE = "Date";
+    static final String COL_IDDATE = "_id";
+    static final int NUM_COL_IDDATE = 0;
+    static final String COL_DATEDEBUT = "DateDebut";
+    static final int NUM_COL_DATEDEBUT = 1;
+    static final String COL_DATEFIN = "DateFin";
+    static final int NUM_COL_DATEFIN = 2;
+    //table visite
+    static final String TABLE_VISITE = "Visite";
+    static final String COL_IDVISITE = "_id";
+    static final int NUM_COL_IDVISITE = 0;
+    static final String COL_IDSTAGE_VISITE = "_idStageVisite";
+    static final int NUM_COL_IDSTAGE_VISITE = 1;
+    static final String COL_DATEVISITE = "DateVisite";
+    static final int NUM_COL_DATEVISITE = 2;
+    static final String COL_CONDITIONS = "Conditions";
+    static final int NUM_COL_CONDITIONS = 3;
+    static final String COL_BILAN = "Bilan";
+    static final int NUM_COL_BILAN = 4;
+    static final String COL_RESSOURCES = "Ressources";
+    static final int NUM_COL_RESSOURCES = 5;
+    static final String COL_CONCLUSION = "Conclusion";
+    static final int NUM_COL_CONCLUSION = 6;
+    static final String COL_JURY = "Jury";
+    static final int NUM_COL_JURY = 7;
+    static final String COL_OPPORTUNITE = "Opportunite";
+    static final int NUM_COL_OPPORTUNITE = 8;
+    static final String COL_SIOPPORTUNITE = "SIOpportunite";
+    static final int NUM_COL_SIOPPORTUNITE = 9;
     private CreateBDD tableCourante;
     private Context context;
     private SQLiteDatabase db;
@@ -59,7 +119,6 @@ public class DAOBdd {
         //Création d'un ContentValues (fonctionne comme une HashMap)
         ContentValues values = new ContentValues();
         //on lui ajoute une valeur associé à une clé (qui est le nom de la colonne où on veut mettre la valeur)
-        values.put(COL_IDENT_ETUD, unEtudiant.get_idEntEtud());
         values.put(COL_NOMETUDIANT, unEtudiant.getNomEtudiant());
         values.put(COL_PRENOMETUDIANT, unEtudiant.getPrenomEtudiant());
         values.put(COL_CLASSE, unEtudiant.getClasse());
@@ -96,10 +155,86 @@ public class DAOBdd {
         return db.rawQuery("SELECT * FROM Entreprise", null);
     }
 
+    public long insererStage (Stage unStage){
+        //Création d'un ContentValues (fonctionne comme une HashMap)
+        ContentValues values = new ContentValues();
+        //on lui ajoute une valeur associé à une clé (qui est le nom de la colonne où on veut mettre la valeur)
+        values.put(COL_IDTUTEUR_STAGE, unStage.get_idTuteurStage());
+        values.put(COL_IDPROFESSEUR_STAGE, unStage.get_idProfesseurStage());
+        values.put(COL_IDETUDIANT_STAGE, unStage.get_idEtudiantStage());
+        values.put(COL_IDENTREPRISE_STAGE, unStage.get_idEntrepriseStage());
+        //on insère l'objet dans la BDD via le ContentValues
+        return db.insert(TABLE_STAGE, null, values);
+    }
+    public Cursor getDataStage(){
+        return db.rawQuery("SELECT * FROM Stage", null);
+    }
 
     public Cursor getListeStages(){
-        return db.rawQuery("SELECT * FROM " + TABLE_ETUDIANT + " ETUD INNER JOIN " + TABLE_ENTREPRISE + " ENT ON ETUD."+COL_IDENT_ETUD+" = ENT."+COL_IDENTREPRISE+"" , null);
+        return db.rawQuery("SELECT * FROM " + TABLE_STAGE + " STA INNER JOIN " + TABLE_ETUDIANT + " ETUD ON STA."+COL_IDETUDIANT_STAGE+" = ETUD."+COL_IDETUDIANT+ " INNER JOIN " + TABLE_ENTREPRISE + " ENT ON STA."+COL_IDENTREPRISE_STAGE+" = ENT."+COL_IDENTREPRISE+"" , null);
     }
+
+    public long insererProfesseur (Professeur unProfesseur){
+        //Création d'un ContentValues (fonctionne comme une HashMap)
+        ContentValues values = new ContentValues();
+        //on lui ajoute une valeur associé à une clé (qui est le nom de la colonne où on veut mettre la valeur)
+        values.put(COL_IDENTITEPROF, unProfesseur.getIdentiteProf());
+        values.put(COL_EMAILPROF, unProfesseur.getEmailProf());
+        values.put(COL_NUMTELPROF, unProfesseur.getNumTelProf());
+        //on insère l'objet dans la BDD via le ContentValues
+        return db.insert(TABLE_PROFESSEUR, null, values);
+    }
+    public Cursor getDataProfesseur(){
+        return db.rawQuery("SELECT * FROM Professeur", null);
+    }
+
+    public long insererTuteur (Tuteur unTuteur){
+        //Création d'un ContentValues (fonctionne comme une HashMap)
+        ContentValues values = new ContentValues();
+        //on lui ajoute une valeur associé à une clé (qui est le nom de la colonne où on veut mettre la valeur)
+        values.put(COL_IDENTITETUTEUR, unTuteur.getIdentiteTuteur());
+        values.put(COL_EMAILTUTEUR, unTuteur.getEmailTuteur());
+        values.put(COL_NUMTELTUTEUR, unTuteur.getNumTelTuteur());
+        //on insère l'objet dans la BDD via le ContentValues
+        return db.insert(TABLE_TUTEUR, null, values);
+    }
+    public Cursor getDataTuteur(){
+        return db.rawQuery("SELECT * FROM Tuteur", null);
+    }
+
+    public long insererDate (Date unDate){
+        //Création d'un ContentValues (fonctionne comme une HashMap)
+        ContentValues values = new ContentValues();
+        //on lui ajoute une valeur associé à une clé (qui est le nom de la colonne où on veut mettre la valeur)
+        values.put(COL_DATEDEBUT, unDate.getDateDebut());
+        values.put(COL_DATEFIN, unDate.getDateFin());
+        //on insère l'objet dans la BDD via le ContentValues
+        return db.insert(TABLE_DATE, null, values);
+    }
+    public Cursor getDataDate(){
+        return db.rawQuery("SELECT * FROM Date", null);
+    }
+
+    public long insererVisite (Visite uneVisite){
+        //Création d'un ContentValues (fonctionne comme une HashMap)
+        ContentValues values = new ContentValues();
+        //on lui ajoute une valeur associé à une clé (qui est le nom de la colonne où on veut mettre la valeur)
+        values.put(COL_IDSTAGE_VISITE, uneVisite.get_idStageVisite());
+        values.put(COL_DATEVISITE, uneVisite.getDateVisite());
+        values.put(COL_CONDITIONS, uneVisite.getConditions());
+        values.put(COL_BILAN, uneVisite.getBilan());
+        values.put(COL_RESSOURCES, uneVisite.getRessources());
+        values.put(COL_CONCLUSION, uneVisite.getConclusion());
+        values.put(COL_JURY, uneVisite.getJury());
+        values.put(COL_OPPORTUNITE, uneVisite.getOpportunite());
+        values.put(COL_SIOPPORTUNITE, uneVisite.getSIOpportunite());
+        //on insère l'objet dans la BDD via le ContentValues
+        return db.insert(TABLE_VISITE, null, values);
+    }
+    public Cursor getDataVisite(){
+        return db.rawQuery("SELECT * FROM Visite", null);
+    }
+
     /***public Cursor getListeEtudiants(){
         return db.rawQuery("SELECT " + COL_IDETUDIANT + " FROM " + TABLE_ETUDIANT +" WHERE " + COL_NOM + " =\"" + nom +"\"", null);
     }

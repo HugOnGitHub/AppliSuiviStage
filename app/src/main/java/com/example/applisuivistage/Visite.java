@@ -9,16 +9,10 @@ public class Visite {
     protected String Jury;
     protected String Opportunite;
     protected String SIOpportunite;
-    protected int _idTuteurV;
-    protected int _idProfesseurV;
-    protected int _idEtudiantV;
-    protected int _idEntrepriseV;
+    protected int _idStageVisite;
 
-    public Visite(int _idtuteurV, int _idprofesseurV, int _idetudiantV, int _identrepriseV, String dateVisite, String conditions, String bilan, String ressources, String conclusion, String jury, String opportunite, String siopportunite) {
-        _idTuteurV = _idtuteurV;
-        _idProfesseurV = _idprofesseurV;
-        _idEtudiantV = _idetudiantV;
-        _idEntrepriseV = _identrepriseV;
+    public Visite(int _idstageVisite, String dateVisite, String conditions, String bilan, String ressources, String conclusion, String jury, String opportunite, String siopportunite) {
+        _idStageVisite = _idstageVisite;
         DateVisite = dateVisite;
         Conditions = conditions;
         Bilan = bilan;
@@ -61,20 +55,8 @@ public class Visite {
         return SIOpportunite;
     }
 
-    public int get_idTuteurV() {
-        return _idTuteurV;
-    }
-
-    public int get_idProfesseurV() {
-        return _idProfesseurV;
-    }
-
-    public int get_idEtudiantV() {
-        return _idEtudiantV;
-    }
-
-    public int get_idEntrepriseV() {
-        return _idEntrepriseV;
+    public int get_idStageVisite() {
+        return _idStageVisite;
     }
 
 
@@ -106,11 +88,5 @@ public class Visite {
 
     public void setSIOpportunite(String siopportunite) { SIOpportunite = siopportunite; }
 
-    public void set_idTuteurV(int _idtuteurV) { _idTuteurV = _idtuteurV; }
-
-    public void set_idProfesseurV(int _idprofesseurV) { _idProfesseurV = _idprofesseurV; }
-
-    public void set_idEtudiantV(int _idetudiantV) { _idEtudiantV = _idetudiantV; }
-
-    public void set_idEntrepriseV(int _identrepriseV) { _idEntrepriseV = _identrepriseV; }
+    public void set_idStageVisite(int _idstageVisite) { _idStageVisite = _idstageVisite; }
 }

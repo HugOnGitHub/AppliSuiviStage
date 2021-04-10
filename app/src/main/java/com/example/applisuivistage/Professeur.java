@@ -1,24 +1,18 @@
 package com.example.applisuivistage;
 
 public class Professeur {
-    protected String NomProf;
-    protected String PrenomProf;
+    protected String IdentiteProf;
     protected String EmailProf;
     protected String NumTelProf;
 
-    public Professeur(String nomProf, String prenomProf, String emailProf, String numTelProf) {
-        NomProf = nomProf;
-        PrenomProf = prenomProf;
+    public Professeur(String identiteProf, String emailProf, String numTelProf) {
+        IdentiteProf = identiteProf;
         EmailProf = emailProf;
         NumTelProf = numTelProf;
     }
 
-    public String getNomProf() {
-        return NomProf;
-    }
-
-    public String getPrenomProf() {
-        return PrenomProf;
+    public String getIdentiteProf() {
+        return IdentiteProf;
     }
 
     public String getEmailProf() {
@@ -29,12 +23,8 @@ public class Professeur {
         return NumTelProf;
     }
 
-    public void setNomProf(String nomProf) {
-        NomProf = nomProf;
-    }
-
-    public void setPrenomProf(String prenomProf) {
-        PrenomProf = prenomProf;
+    public void setIdentiteProf(String identiteProf) {
+        IdentiteProf = identiteProf;
     }
 
     public void setEmailProf(String emailProf) {

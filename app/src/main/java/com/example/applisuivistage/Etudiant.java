@@ -7,18 +7,14 @@ public class Etudiant {
     protected String Classe;
     protected String Annee;
     protected String Specialite;
-    protected int _idEntEtud;
 
-    public Etudiant(int _identEtud, String nomEtudiant, String prenomEtudiant, String classe, String annee, String specialite) {
-        _idEntEtud = _identEtud;
+    public Etudiant(String nomEtudiant, String prenomEtudiant, String classe, String annee, String specialite) {
         NomEtudiant = nomEtudiant;
         PrenomEtudiant = prenomEtudiant;
         Classe = classe;
         Annee = annee;
         Specialite = specialite;
     }
-
-    public int get_idEntEtud() { return _idEntEtud; }
 
     public String getNomEtudiant() {
         return NomEtudiant;
@@ -37,8 +33,6 @@ public class Etudiant {
     }
 
     public String getSpecialite() { return Specialite; }
-
-    public void set_idEntEtud(int _identEtud) { _idEntEtud = _identEtud; }
 
     public void setNomEtudiant(String nomEtudiant) {
         NomEtudiant = nomEtudiant;

@@ -33,24 +33,35 @@ public class CreateBDD extends SQLiteOpenHelper {
 
     private static final String TABLE_PROFESSEUR = "Professeur";
     static final String COL_IDPROFESSEUR = "_id";
-    private static final String COL_NOMPROF =  "NomProf";
-    private static final String COL_PRENOMPROF =  "PrenomProf";
+    private static final String COL_IDENTITEPROF =  "IdentiteProf";
     private static final String COL_EMAILPROF =  "EmailProf";
     private static final String COL_NUMTELPROF =  "NumTelProf";
-    private static final String CREATE_TABLEPROFESSEUR = "CREATE TABLE " + TABLE_PROFESSEUR + " ("+COL_IDPROFESSEUR+" INTEGER PRIMARY KEY AUTOINCREMENT,"+ COL_NOMPROF + " TEXT NOT NULL," + COL_PRENOMPROF +
+    private static final String CREATE_TABLEPROFESSEUR = "CREATE TABLE " + TABLE_PROFESSEUR + " ("+COL_IDPROFESSEUR+" INTEGER PRIMARY KEY AUTOINCREMENT,"+ COL_IDENTITEPROF +
             " TEXT NOT NULL," + COL_EMAILPROF + " TEXT NOT NULL, "+ COL_NUMTELPROF + " TEXT NOT NULL);";
 
     private static final String TABLE_TUTEUR = "Tuteur";
     static final String COL_IDTUTEUR = "_id";
-    private static final String COL_NOMTUTEUR =  "NomTuteur";
-    private static final String COL_PRENOMTUTEUR =  "PrenomTuteur";
+    private static final String COL_IDENTITETUTEUR =  "IdentiteTuteur";
     private static final String COL_EMAILTUTEUR =  "EmailTuteur";
     private static final String COL_NUMTELTUTEUR =  "NumTelTuteur";
-    private static final String CREATE_TABLETUTEUR = "CREATE TABLE " + TABLE_TUTEUR + " ("+COL_IDTUTEUR+" INTEGER PRIMARY KEY AUTOINCREMENT,"+ COL_NOMTUTEUR + " TEXT NOT NULL," + COL_PRENOMTUTEUR +
+    private static final String CREATE_TABLETUTEUR = "CREATE TABLE " + TABLE_TUTEUR + " ("+COL_IDTUTEUR+" INTEGER PRIMARY KEY AUTOINCREMENT,"+ COL_IDENTITETUTEUR +
             " TEXT NOT NULL," + COL_EMAILTUTEUR + " TEXT NOT NULL, "+ COL_NUMTELTUTEUR + " TEXT NOT NULL);";
+
+    private static final String TABLE_STAGE = "Stage";
+    static final String COL_IDSTAGE = "_id";
+    static final String COL_IDTUTEUR_STAGE = "_idTuteurStage";
+    static final String COL_IDPROFESSEUR_STAGE = "_idProfesseurStage";
+    static final String COL_IDETUDIANT_STAGE = "_idEtudiantStage";
+    static final String COL_IDENTREPRISE_STAGE = "_idEntrepriseStage";
+    private static final String CREATE_TABLESTAGE = "CREATE TABLE " + TABLE_STAGE + " ("+COL_IDSTAGE+" INTEGER PRIMARY KEY AUTOINCREMENT,"+ COL_IDTUTEUR_STAGE + " INTEGER,"+ COL_IDPROFESSEUR_STAGE + " INTEGER,"+ COL_IDETUDIANT_STAGE + " INTEGER,"+ COL_IDENTREPRISE_STAGE + " INTEGER,"
+            + " FOREIGN KEY("+COL_IDTUTEUR_STAGE+") REFERENCES " + TABLE_TUTEUR + " ("+ COL_IDTUTEUR+"), "
+            + " FOREIGN KEY("+COL_IDPROFESSEUR_STAGE+") REFERENCES " + TABLE_PROFESSEUR + " ("+ COL_IDPROFESSEUR+"), "
+            + " FOREIGN KEY("+COL_IDETUDIANT_STAGE+") REFERENCES " + TABLE_ETUDIANT + " ("+ COL_IDETUDIANT+"), "
+            + " FOREIGN KEY("+COL_IDENTREPRISE_STAGE+") REFERENCES " + TABLE_ENTREPRISE + " ("+ COL_IDENTREPRISE+")" +");";
 
     private static final String TABLE_VISITE = "Visite";
     static final String COL_IDVISITE = "_id";
+    static final String COL_IDSTAGE_VISITE = "_idStageVisite";
     private static final String COL_DATEVISITE = "DateVisite";
     private static final String COL_CONDITIONS = "Conditions";
     private static final String COL_BILAN = "Bilan";
@@ -59,24 +70,10 @@ public class CreateBDD extends SQLiteOpenHelper {
     private static final String COL_JURY = "Jury";
     private static final String COL_OPPORTUNITE = "Opportunite";
     private static final String COL_SIOPPORTUNITE = "SIOpportunite";
-    private static final String CREATE_TABLEVISITE = "CREATE TABLE " + TABLE_VISITE + " ("+COL_IDVISITE+" INTEGER PRIMARY KEY AUTOINCREMENT,"+ " INTEGER,"+ COL_DATEVISITE + " TEXT NOT NULL,"+ COL_CONDITIONS +
+    private static final String CREATE_TABLEVISITE = "CREATE TABLE " + TABLE_VISITE + " ("+COL_IDVISITE+" INTEGER PRIMARY KEY AUTOINCREMENT,"+ COL_IDSTAGE_VISITE + " INTEGER,"+ COL_DATEVISITE + " TEXT NOT NULL,"+ COL_CONDITIONS +
             " TEXT NOT NULL,"+ COL_BILAN + " TEXT NOT NULL,"+ COL_RESSOURCES + " TEXT NOT NULL,"+ COL_CONCLUSION + " TEXT NOT NULL,"+ COL_JURY + " TEXT NOT NULL,"+ COL_OPPORTUNITE +
-            " TEXT NOT NULL,"+ COL_SIOPPORTUNITE + " TEXT NOT NULL);";
-
-    private static final String TABLE_STAGE = "Stage";
-    static final String COL_IDSTAGE = "_id";
-    static final String COL_IDTUTEURV = "_idTuteurV";
-    static final String COL_IDPROFESSEURV = "_idProfesseurV";
-    static final String COL_IDETUDIANTV = "_idEtudiantV";
-    static final String COL_IDENTREPRISEV = "_idEntrepriseV";
-    static final String COL_IDENT_ETUD = "_idEntEtud";
-    static final String COL_IDVISITEV = "_idVisite";
-    private static final String CREATE_TABLESTAGE = "CREATE TABLE " + TABLE_STAGE + " ("+COL_IDSTAGE+" INTEGER PRIMARY KEY AUTOINCREMENT,"+ COL_IDTUTEURV + " INTEGER,"+ COL_IDPROFESSEURV +
-            " INTEGER,"+ COL_IDETUDIANTV + " INTEGER,"+ COL_IDENTREPRISEV + " INTEGER,"+ COL_IDENT_ETUD  + " INTEGER,"+ COL_IDVISITE + " FOREIGN KEY("+COL_IDTUTEURV+") REFERENCES " + TABLE_TUTEUR +
-            " ("+ COL_IDTUTEUR+") " + " FOREIGN KEY("+COL_IDPROFESSEURV+") REFERENCES " + TABLE_PROFESSEUR + " ("+ COL_IDPROFESSEUR+") " + " FOREIGN KEY("+COL_IDETUDIANTV+") REFERENCES " + TABLE_ETUDIANT +
-            " ("+ COL_IDETUDIANT+") " + " FOREIGN KEY("+COL_IDENTREPRISEV+") REFERENCES " + TABLE_ENTREPRISE + " ("+ COL_IDENTREPRISE+")  + " +
-            " FOREIGN KEY("+COL_IDENT_ETUD+") REFERENCES "+ TABLE_ENTREPRISE +" ("+ COL_IDENTREPRISE+")" +
-            " FOREIGN KEY("+COL_IDVISITEV+") REFERENCES " + TABLE_VISITE + " ("+ COL_IDVISITE+");";
+            " TEXT NOT NULL,"+ COL_SIOPPORTUNITE + " TEXT NOT NULL,"
+            + " FOREIGN KEY("+COL_IDSTAGE_VISITE+") REFERENCES " + TABLE_STAGE + " ("+ COL_IDSTAGE+")" +");";
 
 
     //constructeur paramétré
@@ -101,6 +98,7 @@ public class CreateBDD extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //On peut supprimer la table et la recréeré
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_STAGE + ";");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_VISITE + ";");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ENTREPRISE + ";");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ETUDIANT + ";");
