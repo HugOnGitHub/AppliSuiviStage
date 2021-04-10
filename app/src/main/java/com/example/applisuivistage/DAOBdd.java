@@ -140,6 +140,13 @@ public class DAOBdd {
     public Cursor getInfosEtudiant(String nom, String prenom){
         return db.rawQuery("SELECT Annee, Classe, Specialite FROM " + TABLE_ETUDIANT + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
     }
+    public Cursor updateEtudiant(String nom, String prenom, String specialite){
+        return db.rawQuery("UPDATE "+ TABLE_ETUDIANT
+                + "SET " + COL_SPECIALITE + " =\"" + specialite
+                + " FROM " + TABLE_ETUDIANT
+                +  "ETUD INNER JOIN " + TABLE_STAGE + " STA ON ETUD."+COL_IDETUDIANT+" = STA."+COL_IDETUDIANT_STAGE
+                + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
+    }
 
     public long insererEntreprise (Entreprise uneEntreprise){
         //Création d'un ContentValues (fonctionne comme une HashMap)
@@ -153,6 +160,15 @@ public class DAOBdd {
     }
     public Cursor getDataEntreprise(){
         return db.rawQuery("SELECT * FROM Entreprise", null);
+    }
+
+    public Cursor updateEntreprise(String nom, String prenom, String entreprise){
+        return db.rawQuery("UPDATE "+ TABLE_ENTREPRISE
+                + "SET " + COL_NOMSOCIETE + " =\"" + entreprise
+                + " FROM " + TABLE_ENTREPRISE
+                +  "ENT INNER JOIN " + TABLE_STAGE + " STA ON ENT."+COL_IDENTREPRISE+" = STA."+COL_IDENTREPRISE_STAGE
+                + " INNER JOIN " + TABLE_ETUDIANT + " ETUD ON STA."+COL_IDETUDIANT_STAGE+" = ETUD."+COL_IDETUDIANT
+                + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
     }
 
     public long insererStage (Stage unStage){
@@ -205,6 +221,16 @@ public class DAOBdd {
         return db.rawQuery("SELECT * FROM Professeur", null);
     }
 
+    public Cursor updateProfesseur(String nom, String prenom, String tuteur, String mail){
+        return db.rawQuery("UPDATE "+ TABLE_PROFESSEUR
+                + "SET " + COL_IDENTITEPROF + " =\"" + tuteur + ", "
+                + COL_EMAILPROF + " =\"" + mail
+                + " FROM " + TABLE_PROFESSEUR
+                +  "PROF INNER JOIN " + TABLE_STAGE + " STA ON PROF."+COL_IDPROFESSEUR+" = STA."+COL_IDPROFESSEUR_STAGE
+                + " INNER JOIN " + TABLE_ETUDIANT + " ETUD ON STA."+COL_IDETUDIANT_STAGE+" = ETUD."+COL_IDETUDIANT
+                + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
+    }
+
     public long insererTuteur (Tuteur unTuteur){
         //Création d'un ContentValues (fonctionne comme une HashMap)
         ContentValues values = new ContentValues();
@@ -217,6 +243,17 @@ public class DAOBdd {
     }
     public Cursor getDataTuteur(){
         return db.rawQuery("SELECT * FROM Tuteur", null);
+    }
+
+    public Cursor updateTuteur(String nom, String prenom, String tuteur, String tel, String mail){
+        return db.rawQuery("UPDATE "+ TABLE_TUTEUR
+                + "SET " + COL_IDENTITETUTEUR + " =\"" + tuteur + ", "
+                + COL_NUMTELTUTEUR + " =\"" + tel + ", "
+                + COL_EMAILTUTEUR + " =\"" + mail
+                + " FROM " + TABLE_TUTEUR
+                +  "TUT INNER JOIN " + TABLE_STAGE + " STA ON TUT."+COL_IDTUTEUR+" = STA."+COL_IDTUTEUR_STAGE
+                + " INNER JOIN " + TABLE_ETUDIANT + " ETUD ON STA."+COL_IDETUDIANT_STAGE+" = ETUD."+COL_IDETUDIANT
+                + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
     }
 
     public long insererDate (Date unDate){

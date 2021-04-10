@@ -78,13 +78,32 @@ public class FicheSuiviActivity5 extends Activity {
         Cursor c = FicheSuiviBdd.getIDStage(nom, prenom);
         // champs dans lesquelles afficher les colonnes
         c.moveToFirst();
-        // The Cursor is now set to the right position
+        final String nomFinal = nom;
+        final String prenomFinal = prenom;
+
+        // final pour l'update d'une visite
         final int _idStageVisite = c.getInt(c.getColumnIndex("_idStageVisite"));
         final String dateVisiteFinal = dateVisite;
         final String conditionsStagesFinal = conditionsStages;
         final String bilanTravauxFinal = bilanTravaux;
         final String ressourcesOutilsFinal = ressourcesOutils;
         final String commentairesAppreciationsFinal = commentairesAppreciations;
+
+        // final pour l'update d'un etudiant
+        final String specialiteFinal = specialite;
+
+        // final pour l'update d'un professeur
+        final String tuteurPedagFinal = tuteurPedag;
+        final String mailPedagFinal = mailPedag;
+
+        // final pour l'update d'une entreprise
+        final String entrepriseFinal = entreprise;
+
+        // final pour l'update d'un tuteur
+        final String tuteurEntrepFinal = tuteurEntrep;
+        final String telEntrepFinal = telEntrep;
+        final String mailEntrepFinal = mailEntrep;
+
 
         Cursor c1 = FicheSuiviBdd.getIDStageVisite(_idStageVisite);
 
@@ -102,8 +121,13 @@ public class FicheSuiviActivity5 extends Activity {
                             finish();
                             break;
                         case R.id.btnEnregistrer:
-                            Cursor c2 = FicheSuiviBdd.updateVisite(_idStageVisite, dateVisiteFinal, conditionsStagesFinal, bilanTravauxFinal, ressourcesOutilsFinal,
+                            //on met à jour les tables
+                            FicheSuiviBdd.updateVisite(_idStageVisite, dateVisiteFinal, conditionsStagesFinal, bilanTravauxFinal, ressourcesOutilsFinal,
                                     commentairesAppreciationsFinal, selectedRadioParticipMaitreStage, selectedRadioOpportunite, selectedRadioSiOpportunite);
+                            FicheSuiviBdd.updateEtudiant(nomFinal, prenomFinal, specialiteFinal);
+                            FicheSuiviBdd.updateProfesseur(nomFinal, prenomFinal, tuteurPedagFinal, mailPedagFinal);
+                            FicheSuiviBdd.updateEntreprise(nomFinal, prenomFinal, entrepriseFinal);
+                            FicheSuiviBdd.updateTuteur(nomFinal, prenomFinal, tuteurEntrepFinal, telEntrepFinal, mailEntrepFinal);
                             FicheSuiviBdd.close();
                             finish();
                             break;
@@ -128,6 +152,11 @@ public class FicheSuiviActivity5 extends Activity {
                         case R.id.btnEnregistrer:
                             //on insère une visite
                             FicheSuiviBdd.insererVisite(uneVisite);
+                            //on met à jour les tables
+                            FicheSuiviBdd.updateEtudiant(nomFinal, prenomFinal, specialiteFinal);
+                            FicheSuiviBdd.updateProfesseur(nomFinal, prenomFinal, tuteurPedagFinal, mailPedagFinal);
+                            FicheSuiviBdd.updateEntreprise(nomFinal, prenomFinal, entrepriseFinal);
+                            FicheSuiviBdd.updateTuteur(nomFinal, prenomFinal, tuteurEntrepFinal, telEntrepFinal, mailEntrepFinal);
                             FicheSuiviBdd.close();
                             finish();
                             break;
