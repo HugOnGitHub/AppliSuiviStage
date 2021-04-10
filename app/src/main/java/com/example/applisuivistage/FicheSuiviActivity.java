@@ -31,13 +31,12 @@ public class FicheSuiviActivity extends Activity {
         setContentView(R.layout.activity_rapport_1);
 
         //on déclare en final les données passées à l'autre interface
-        final TextView annee = findViewById(R.id.checkedTextViewAnnee);
-        final TextView classe = findViewById(R.id.checkedTextViewClasse);
+        final TextView annee = findViewById(R.id.textViewAnnee);
+        final TextView classe = findViewById(R.id.textViewClasse);
         final String[] leNom = new String[1];
         final String[] lePrenom = new String[1];
-        RadioGroup rg = (RadioGroup) findViewById(R.id.radioSpecialite);
+        final RadioGroup rg = (RadioGroup) findViewById(R.id.radioSpecialite);
         final String selectedRadioValue =((RadioButton)findViewById(rg.getCheckedRadioButtonId() )).getText().toString();
-        Toast.makeText(FicheSuiviActivity.this, "Vous avez choisi : " + "\nla specialité : " + selectedRadioValue, Toast.LENGTH_SHORT).show();
 
         Button btnSuivant = (Button) findViewById(R.id.btnSuivant);
         Button btnAnnuler = (Button) findViewById(R.id.btnAnnuler);
@@ -89,38 +88,49 @@ public class FicheSuiviActivity extends Activity {
                 leNom[0] =
                         String.valueOf(spinnerNomEleve.getSelectedItem());
 
-                Toast.makeText(FicheSuiviActivity.this, "Vous avez choisi : " + "\nle nom : " + leNom[0], Toast.LENGTH_SHORT).show();
-            }
+                //gestion de la liste déroulante des prenoms
+                Cursor c1 = FicheSuiviBdd.getListePrenomEtudiant(leNom[0]);
+                ArrayList<String> bddPrenomEtudiant = new ArrayList<String>();
+                for(c1.moveToFirst(); !c1.isAfterLast(); c1.moveToNext()) {
+                    // The Cursor is now set to the right position
+                    bddPrenomEtudiant.add(c1.getString(c1.getColumnIndex("PrenomEtudiant")));
+                }
+
+                final Spinner spinnerPrenomEleve = (Spinner) findViewById(R.id.spinnerPrenomEleve);
+                ArrayAdapter<String> dataAdapterR = new ArrayAdapter <String>(FicheSuiviActivity.this ,
+                        android.R.layout.simple_spinner_item ,bddPrenomEtudiant );
+                dataAdapterR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item
+                );
+                spinnerPrenomEleve.setAdapter(dataAdapterR);
+                spinnerPrenomEleve.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    public void
+                    onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        lePrenom[0] =
+                                String.valueOf(spinnerPrenomEleve.getSelectedItem());
+
+                        //recuperation de l'annee et de classe en fonction des listes déroulantes
+                        Cursor c2 = FicheSuiviBdd.getInfosEtudiant(leNom[0], lePrenom[0]);
+                        // champs dans lesquelles afficher les colonnes
+                        if(c2.moveToFirst()) {
+                            // The Cursor is now set to the right position
+                            TextView Annee = (TextView)findViewById(R.id.textViewAnnee);
+                            Annee.setText(c2.getString(c2.getColumnIndex("Annee")));
+                            TextView Classe = (TextView)findViewById(R.id.textViewClasse);
+                            Classe.setText(c2.getString(c2.getColumnIndex("Classe")));
+                            if (c2.getString(c2.getColumnIndex("Specialite")).equals("Spécialité SLAM (Développeur)")) {
+                                rg.check(R.id.radioSLAM);
+                            } else {
+                                rg.check(R.id.radioSISR);
+                            }
+                        }
+                    }
 
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                //cas où rien n'est sélectionné dans la liste
-            }
-        });
-
-        //gestion de la liste déroulante des prenoms
-        Cursor c1 = FicheSuiviBdd.getListePrenomEtudiant(leNom[0]);
-        ArrayList<String> bddPrenomEtudiant = new ArrayList<String>();
-        for(c1.moveToFirst(); !c1.isAfterLast(); c1.moveToNext()) {
-            // The Cursor is now set to the right position
-            bddPrenomEtudiant.add(c1.getString(c1.getColumnIndex("PrenomEtudiant")));
-            Toast.makeText(FicheSuiviActivity.this, "Vous avez choisi : " + "\nle prenom : " + bddPrenomEtudiant, Toast.LENGTH_SHORT).show();
-        }
-
-        final Spinner spinnerPrenomEleve = (Spinner) findViewById(R.id.spinnerPrenomEleve);
-        ArrayAdapter<String> dataAdapterR = new ArrayAdapter <String>( this ,
-                android.R.layout.simple_spinner_item ,bddPrenomEtudiant );
-        dataAdapterR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item
-        );
-        spinnerPrenomEleve.setAdapter(dataAdapterR);
-        spinnerPrenomEleve.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void
-            onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                lePrenom[0] =
-                        String.valueOf(spinnerPrenomEleve.getSelectedItem());
-
-                Toast.makeText(FicheSuiviActivity.this, "Vous avez choisi : " + "\nle prenom : " + lePrenom[0], Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        //cas où rien n'est sélectionné dans la liste
+                    }
+                });
             }
 
 
