@@ -25,15 +25,12 @@ public class FicheSuiviActivity5 extends Activity {
         //on déclare en final les données de l'interface à enregistrer
         RadioGroup rg = (RadioGroup) findViewById(R.id.radioParticipMaitreStage);
         final String selectedRadioParticipMaitreStage =((RadioButton)findViewById(rg.getCheckedRadioButtonId() )).getText().toString();
-        Toast.makeText(FicheSuiviActivity5.this, "Vous avez choisi : " + "\nla specialité : " + selectedRadioParticipMaitreStage, Toast.LENGTH_SHORT).show();
 
         RadioGroup rg2 = (RadioGroup) findViewById(R.id.radioOpportunite);
         final String selectedRadioOpportunite =((RadioButton)findViewById(rg2.getCheckedRadioButtonId() )).getText().toString();
-        Toast.makeText(FicheSuiviActivity5.this, "Vous avez choisi : " + "\nla specialité : " + selectedRadioOpportunite, Toast.LENGTH_SHORT).show();
 
         RadioGroup rg3 = (RadioGroup) findViewById(R.id.radioSiOpportunite);
         final String selectedRadioSiOpportunite =((RadioButton)findViewById(rg3.getCheckedRadioButtonId() )).getText().toString();
-        Toast.makeText(FicheSuiviActivity5.this, "Vous avez choisi : " + "\nla specialité : " + selectedRadioSiOpportunite, Toast.LENGTH_SHORT).show();
 
         String nom ="";
         String prenom ="";
@@ -52,10 +49,6 @@ public class FicheSuiviActivity5 extends Activity {
         String bilanTravaux="";
         String ressourcesOutils="";
         String commentairesAppreciations="";
-
-        Intent intent2 = getIntent();
-        Toast.makeText(FicheSuiviActivity5.this, "Vous avez choisi : " + "\nla specialité : " + intent2.getStringExtra("EXTRA_Specialite"), Toast.LENGTH_SHORT).show();
-        Toast.makeText(FicheSuiviActivity5.this, "Vous avez choisi : " + "\nla specialité : " + intent2.getStringExtra("EXTRA_Eleve"), Toast.LENGTH_SHORT).show();
 
         //on va récupérer les valeurs provenant de NewReleveActivity
         Intent intent = getIntent();
@@ -78,64 +71,70 @@ public class FicheSuiviActivity5 extends Activity {
             ressourcesOutils= intent.getStringExtra("EXTRA_RessourcesOutils");
             commentairesAppreciations= intent.getStringExtra("EXTRA_CommentairesAppreciations");
         }
-/***
- final DAOBdd FicheSuiviBdd = new DAOBdd(this);
- FicheSuiviBdd.open();
- Cursor c = FicheSuiviBdd.getUnTuteur(nom,prenom);
- c.moveToFirst();
- int _idTuteur = c.getInt(c.getColumnIndex("_id"));
 
- Cursor c2 = FicheSuiviBdd.getUnProfesseur(nom,prenom);
- c.moveToFirst();
- int _idProfesseur = c.getInt(c.getColumnIndex("_id"));
+        final DAOBdd FicheSuiviBdd = new DAOBdd(this);
+        //on ouvre la base de données
+        FicheSuiviBdd.open();
+        Cursor c = FicheSuiviBdd.getIDStage(nom, prenom);
+        // champs dans lesquelles afficher les colonnes
+        c.moveToFirst();
+        // The Cursor is now set to the right position
+        final int _idStageVisite = c.getInt(c.getColumnIndex("_idStageVisite"));
+        final String dateVisiteFinal = dateVisite;
+        final String conditionsStagesFinal = conditionsStages;
+        final String bilanTravauxFinal = bilanTravaux;
+        final String ressourcesOutilsFinal = ressourcesOutils;
+        final String commentairesAppreciationsFinal = commentairesAppreciations;
 
- Cursor c3 = FicheSuiviBdd.getUnEtudiant(nom,prenom);
- c.moveToFirst();
- int _idEtudiant = c.getInt(c.getColumnIndex("_id"));
+        Cursor c1 = FicheSuiviBdd.getIDStageVisite(_idStageVisite);
 
- Cursor c4 = FicheSuiviBdd.getUneEntreprise(nom,prenom);
- c.moveToFirst();
- int _idEntreprise = c.getInt(c.getColumnIndex("_id"));
-
- final Visite uneFiche =  new Visite(_idTuteur, _idProfesseur, _idEtudiant, _idEntreprise, dateVisite, conditionsStages, bilanTravaux, ressourcesOutils, commentairesAppreciations, selectedRadioParticipMaitreStage, selectedRadioOpportunite, selectedRadioSiOpportunite);
- ListView ListeInfosUnReleve = (ListView) findViewById(R.id.listeInfosUnReleve);
- List<String> infoReleve = new ArrayList<String>();
- infoReleve.add("temperature : "+ templu);
- infoReleve.add("mois : "+ moislu);
- infoReleve.add("jour : "+ jourlu);
- infoReleve.add("heure : "+ heurelu);
- ArrayAdapter<String> adapterReleve = new ArrayAdapter<String>(this,
- android.R.layout.simple_list_item_1, infoReleve);
- ListeInfosUnReleve.setAdapter(adapterReleve);
-
- ListView ListeInfosUnLac = (ListView) findViewById(R.id.listeInfosUnLac);
- List<String> infoLac = new ArrayList<String>();
- infoLac.add("lac : "+ nomlaclu);
- infoLac.add("coordonnees longitudinales : "+ coordlonglu);
- infoLac.add("coordonnees latitudinales : "+ coordlatlu);
- ArrayAdapter<String> adapterLac = new ArrayAdapter<String>(this,
- android.R.layout.simple_list_item_1, infoLac);
- ListeInfosUnLac.setAdapter(adapterLac);
-
- //programmation du bouton quitter
- Button btnAnnuler = findViewById(R.id.btnAnnuler);
- Button btnEnregistrer = findViewById(R.id.btnEnregistrer);
- //on va créer un écouteur
- View.OnClickListener ecouteur = new View.OnClickListener() {
- //on implémente la méthode onclick
- @Override
- public void onClick(View v) {
- switch (v.getId()) {
- case R.id.btnAnnuler:
- finish();
- break;
- case R.id.btnEnregistrer:
- FicheSuiviBdd.insererFicheSuivi(uneFiche);
- FicheSuiviBdd.close();
- finish();
- break;
- }
- }
- };*/
+        if(c1.getCount()>0){
+            //programmation des boutons
+            Button btnAnnuler = findViewById(R.id.btnAnnuler);
+            Button btnEnregistrer = findViewById(R.id.btnEnregistrer);
+            //on va créer un écouteur
+            View.OnClickListener ecouteur = new View.OnClickListener() {
+                //on implémente la méthode onclick
+                @Override
+                public void onClick(View v) {
+                    switch (v.getId()) {
+                        case R.id.btnAnnuler:
+                            finish();
+                            break;
+                        case R.id.btnEnregistrer:
+                            Cursor c2 = FicheSuiviBdd.updateVisite(_idStageVisite, dateVisiteFinal, conditionsStagesFinal, bilanTravauxFinal, ressourcesOutilsFinal,
+                                    commentairesAppreciationsFinal, selectedRadioParticipMaitreStage, selectedRadioOpportunite, selectedRadioSiOpportunite);
+                            FicheSuiviBdd.close();
+                            finish();
+                            break;
+                    }
+                }
+            };
+        }else{
+            final Visite uneVisite = new Visite(c.getInt(c.getColumnIndex("_id")), dateVisite, conditionsStages, bilanTravaux, ressourcesOutils,
+                    commentairesAppreciations, selectedRadioParticipMaitreStage, selectedRadioOpportunite, selectedRadioSiOpportunite);
+            //programmation des boutons
+            Button btnAnnuler = findViewById(R.id.btnAnnuler);
+            Button btnEnregistrer = findViewById(R.id.btnEnregistrer);
+            //on va créer un écouteur
+            View.OnClickListener ecouteur = new View.OnClickListener() {
+                //on implémente la méthode onclick
+                @Override
+                public void onClick(View v) {
+                    switch (v.getId()) {
+                        case R.id.btnAnnuler:
+                            finish();
+                            break;
+                        case R.id.btnEnregistrer:
+                            //on insère une visite
+                            FicheSuiviBdd.insererVisite(uneVisite);
+                            FicheSuiviBdd.close();
+                            finish();
+                            break;
+                    }
+                }
+            };
+        }
+        c1.close();
     }
 }
