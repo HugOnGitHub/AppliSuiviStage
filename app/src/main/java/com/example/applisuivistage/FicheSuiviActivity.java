@@ -31,8 +31,8 @@ public class FicheSuiviActivity extends Activity {
         setContentView(R.layout.activity_rapport_1);
 
         //on déclare en final les données passées à l'autre interface
-        final TextView annee = findViewById(R.id.textViewAnnee);
-        final TextView classe = findViewById(R.id.textViewClasse);
+        final TextView annee = findViewById(R.id.checkedTextViewAnnee);
+        final TextView classe = findViewById(R.id.checkedTextViewClasse);
         final String[] leNom = new String[1];
         final String[] lePrenom = new String[1];
         final RadioGroup rg = (RadioGroup) findViewById(R.id.radioSpecialite);
@@ -113,9 +113,9 @@ public class FicheSuiviActivity extends Activity {
                         // champs dans lesquelles afficher les colonnes
                         if(c2.moveToFirst()) {
                             // The Cursor is now set to the right position
-                            TextView Annee = (TextView)findViewById(R.id.textViewAnnee);
+                            TextView Annee = (TextView)findViewById(R.id.checkedTextViewAnnee);
                             Annee.setText(c2.getString(c2.getColumnIndex("Annee")));
-                            TextView Classe = (TextView)findViewById(R.id.textViewClasse);
+                            TextView Classe = (TextView)findViewById(R.id.checkedTextViewClasse);
                             Classe.setText(c2.getString(c2.getColumnIndex("Classe")));
                             if (c2.getString(c2.getColumnIndex("Specialite")).equals("Spécialité SLAM (Développeur)")) {
                                 rg.check(R.id.radioSLAM);
