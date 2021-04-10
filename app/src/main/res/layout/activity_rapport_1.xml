@@ -7,10 +7,13 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/linearLayout14"
         android:layout_width="415dp"
         android:layout_height="53dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -26,76 +29,76 @@
 
     <LinearLayout
         android:id="@+id/linearLayout12"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="325dp"
+        android:layout_width="412dp"
+        android:layout_height="220dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout14">
 
         <Spinner
             android:id="@+id/spinnerNomEleve"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />
 
         <Spinner
             android:id="@+id/spinnerPrenomEleve"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />
 
-        <CheckedTextView
+        <TextView
             android:id="@+id/checkedTextViewAnnee"
-            android:layout_width="match_parent"
+            android:layout_width="249dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
             android:background="#7B7474" />
 
-        <CheckedTextView
+        <TextView
             android:id="@+id/checkedTextViewClasse"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:background="#7B7474" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout15"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="450dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="80dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout12">
 
         <RadioGroup
             android:id="@+id/radioSpecialite"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/radioSLAM"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Spécialité SISR (Administrateur Réseau)" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
 
             <RadioButton
                 android:id="@+id/radioSISR"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:text="Spécialité SLAM (Développeur)"
-                android:checked="true" />
+                android:layout_gravity="center_horizontal"
+                android:text="Spécialité SISR (Administrateur Réseau)" />
+
+            <RadioButton
+                android:id="@+id/radioSLAM"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:checked="true"
+                android:text="Spécialité SLAM (Développeur)" />
         </RadioGroup>
 
 
@@ -103,23 +106,20 @@
 
     <LinearLayout
         android:id="@+id/linearLayout11"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="550dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="60dp"
+        android:layout_width="412dp"
+        android:layout_height="113dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout15">
 
         <Button
             android:id="@+id/btnSuivant"
             style="@style/stylebouton"
-            android:layout_width="236dp"
+            android:layout_width="250dp"
             android:layout_height="2dp"
+            android:layout_gravity="center_horizontal"
             android:layout_margin="5dp"
             android:layout_marginTop="50dp"
             android:layout_weight="1"
@@ -130,8 +130,9 @@
         <Button
             android:id="@+id/btnAnnuler"
             style="@style/stylebouton"
-            android:layout_width="236dp"
-            android:layout_height="3dp"
+            android:layout_width="250dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center_horizontal"
             android:layout_margin="5dp"
             android:layout_marginTop="50dp"
             android:layout_weight="1"

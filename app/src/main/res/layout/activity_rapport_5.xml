@@ -9,12 +9,12 @@
 
     <LinearLayout
         android:id="@+id/linearLayout10"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="600dp"
+        android:layout_width="416dp"
+        android:layout_height="65dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout9"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,25 +44,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Participation du maître de stage à l'épreuve oral 'Parcours de professionnalisation'" />
+            android:text="Participation du maître de stage à l'épreuve oral 'Parcours de professionnalisation'"
+            android:textAlignment="center" />
 
 
         <RadioGroup
             android:id="@+id/radioParticipMaitreStage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
 
             <RadioButton
                 android:id="@+id/radioButtonOuiParticipationMaitreStage"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="Oui" />
 
             <RadioButton
                 android:id="@+id/radioButtonNonParticipationMaitreStage"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="Non" />
         </RadioGroup>
 
@@ -71,24 +75,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Opportunité de stage" />
+            android:text="Opportunité de stage"
+            android:textAlignment="center" />
 
         <RadioGroup
             android:id="@+id/radioOpportunite"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
 
             <RadioButton
                 android:id="@+id/radioButtonOuiOpportuniteStage"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="Oui" />
 
             <RadioButton
                 android:id="@+id/radioButtonNonOpportuniteStage"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="Non" />
         </RadioGroup>
 
@@ -97,24 +105,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="si oui :" />
+            android:text="si oui :"
+            android:textAlignment="center" />
 
         <RadioGroup
             android:id="@+id/radioSiOpportunite"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
 
             <RadioButton
                 android:id="@+id/radioButtonMaiJuin"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="mai-juin 2020" />
 
             <RadioButton
                 android:id="@+id/radioButtonJanvierFevrier"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="janvier-février 2021" />
         </RadioGroup>
 
@@ -122,36 +134,35 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout9"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="550dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="60dp"
+        android:id="@+id/linearLayout11"
+        android:layout_width="412dp"
+        android:layout_height="113dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <Button
-            android:id="@+id/btnEnregistrer"
+            android:id="@+id/btnSuivant"
             style="@style/stylebouton"
-            android:layout_width="236dp"
+            android:layout_width="250dp"
             android:layout_height="2dp"
+            android:layout_gravity="center_horizontal"
             android:layout_margin="5dp"
             android:layout_marginTop="50dp"
             android:layout_weight="1"
             android:background="@drawable/mybutton"
             android:focusedByDefault="false"
-            android:text="@string/btnEnregistrer" />
+            android:text="@string/btnSuivant" />
 
         <Button
             android:id="@+id/btnAnnuler"
             style="@style/stylebouton"
-            android:layout_width="236dp"
-            android:layout_height="3dp"
+            android:layout_width="250dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center_horizontal"
             android:layout_margin="5dp"
             android:layout_marginTop="50dp"
             android:layout_weight="1"

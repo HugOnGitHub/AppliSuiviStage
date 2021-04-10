@@ -95,6 +95,7 @@ public class CreateBDD extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLETUTEUR);
         db.execSQL(CREATE_TABLEVISITE);
         db.execSQL(CREATE_TABLEDATE);
+        db.execSQL(CREATE_TABLESTAGE);
     }
     // appelée si la version de la base a changé
     @Override
@@ -106,6 +107,7 @@ public class CreateBDD extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROFESSEUR + ";");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TUTEUR + ";");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DATE + ";");
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_STAGE + ";");
         onCreate(db);
     }
 
