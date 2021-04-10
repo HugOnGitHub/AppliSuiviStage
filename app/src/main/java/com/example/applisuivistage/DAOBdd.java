@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DAOBdd {
-    static final int VERSION_BDD =20;
+    static final int VERSION_BDD =41;
     private static final String NOM_BDD = "SuiviStageTestBdd.db";
     //table etudiant
     static final String TABLE_ETUDIANT = "Etudiant";
@@ -171,7 +171,18 @@ public class DAOBdd {
     }
 
     public Cursor getListeStages(){
-        return db.rawQuery("SELECT * FROM " + TABLE_STAGE + " STA INNER JOIN " + TABLE_ETUDIANT + " ETUD ON STA."+COL_IDETUDIANT_STAGE+" = ETUD."+COL_IDETUDIANT+ " INNER JOIN " + TABLE_ENTREPRISE + " ENT ON STA."+COL_IDENTREPRISE_STAGE+" = ENT."+COL_IDENTREPRISE+"" , null);
+        return db.rawQuery("SELECT * FROM " + TABLE_STAGE
+                + " STA INNER JOIN " + TABLE_ETUDIANT + " ETUD ON STA."+COL_IDETUDIANT_STAGE+" = ETUD."+COL_IDETUDIANT
+                + " INNER JOIN " + TABLE_ENTREPRISE + " ENT ON STA."+COL_IDENTREPRISE_STAGE+" = ENT."+COL_IDENTREPRISE+"" , null);
+    }
+
+    public Cursor getInfosStage(String nom, String prenom){
+        return db.rawQuery("SELECT * FROM " + TABLE_STAGE
+                + " STA INNER JOIN " + TABLE_PROFESSEUR + " PROF ON STA."+COL_IDPROFESSEUR_STAGE+" = PROF."+COL_IDPROFESSEUR
+                + " INNER JOIN " + TABLE_ENTREPRISE + " ENT ON STA."+COL_IDENTREPRISE_STAGE+" = ENT."+COL_IDENTREPRISE
+                + " INNER JOIN " + TABLE_TUTEUR + " TUT ON STA."+COL_IDTUTEUR_STAGE+" = TUT."+COL_IDTUTEUR
+                + " INNER JOIN " + TABLE_ETUDIANT + " ETUD ON STA."+COL_IDETUDIANT_STAGE+" = ETUD."+COL_IDETUDIANT
+                + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
     }
 
     public long insererProfesseur (Professeur unProfesseur){
@@ -235,19 +246,7 @@ public class DAOBdd {
         return db.rawQuery("SELECT * FROM Visite", null);
     }
 
-    /***public Cursor getListeEtudiants(){
-        return db.rawQuery("SELECT " + COL_IDETUDIANT + " FROM " + TABLE_ETUDIANT +" WHERE " + COL_NOM + " =\"" + nom +"\"", null);
-    }
-    public Cursor getUnTuteur(){
-        return db.rawQuery("SELECT " + COL_IDETUDIANT + " FROM " + TABLE_ETUDIANT +" WHERE " + COL_NOM + " =\"" + nom +"\"", null);
-    }
-    public Cursor getUnProfesseur(){
-        return db.rawQuery("SELECT " + COL_IDETUDIANT + " FROM " + TABLE_ETUDIANT +" WHERE " + COL_NOM + " =\"" + nom +"\"", null);
-    }*/
     public Cursor getUnEtudiant(String nom, String prenom){
         return db.rawQuery("SELECT " + COL_IDETUDIANT + " FROM " + TABLE_ETUDIANT +" WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
     }
-    /***public Cursor getUneEntreprise(){
-        return db.rawQuery("SELECT " + COL_IDETUDIANT + " FROM " + TABLE_ETUDIANT +" WHERE " + COL_NOM + " =\"" + nom +"\"", null);
-    }*/
 }

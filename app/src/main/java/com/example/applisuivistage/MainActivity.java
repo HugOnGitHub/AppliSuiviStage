@@ -68,10 +68,6 @@ public class MainActivity extends AppCompatActivity {
         etudiantBdd.insererEtudiant(etudiant2);
         etudiantBdd.insererEtudiant(etudiant3);
         etudiantBdd.insererEtudiant(etudiant4);
-        //le curseur pour afficher le nombre de lacs dans la base
-        Cursor c = etudiantBdd.getDataEtudiant();
-        Toast.makeText(getApplicationContext(), " il y a " +
-                String.valueOf(c.getCount()) + " etudiants ", Toast.LENGTH_LONG).show();
         etudiantBdd.close();
     }
 
@@ -84,10 +80,6 @@ public class MainActivity extends AppCompatActivity {
         //on insère professeur1, professeur2
         professeurBdd.insererProfesseur(professeur1);
         professeurBdd.insererProfesseur(professeur2);
-        //le curseur pour afficher le nombre de lacs dans la base
-        Cursor c = professeurBdd.getDataProfesseur();
-        Toast.makeText(getApplicationContext(), " il y a " +
-                String.valueOf(c.getCount()) + " professeurs ", Toast.LENGTH_LONG).show();
         professeurBdd.close();
     }
 
@@ -104,10 +96,6 @@ public class MainActivity extends AppCompatActivity {
         tuteurBdd.insererTuteur(tuteur2);
         tuteurBdd.insererTuteur(tuteur3);
         tuteurBdd.insererTuteur(tuteur4);
-        //le curseur pour afficher le nombre de lacs dans la base
-        Cursor c = tuteurBdd.getDataTuteur();
-        Toast.makeText(getApplicationContext(), " il y a " +
-                String.valueOf(c.getCount()) + " tuteurs ", Toast.LENGTH_LONG).show();
         tuteurBdd.close();
     }
 
@@ -124,10 +112,6 @@ public class MainActivity extends AppCompatActivity {
         entrepriseBdd.insererEntreprise(entreprise2);
         entrepriseBdd.insererEntreprise(entreprise3);
         entrepriseBdd.insererEntreprise(entreprise4);
-        //le curseur pour afficher le nombre de lacs dans la base
-        Cursor c = entrepriseBdd.getDataEntreprise();
-        Toast.makeText(getApplicationContext(), " il y a " +
-                String.valueOf(c.getCount()) + " entreprises ", Toast.LENGTH_LONG).show();
         entrepriseBdd.close();
     }
 
@@ -144,10 +128,6 @@ public class MainActivity extends AppCompatActivity {
         stageBdd.insererStage(stage2);
         stageBdd.insererStage(stage3);
         stageBdd.insererStage(stage4);
-        //le curseur pour afficher le nombre de lacs dans la base
-        Cursor c = stageBdd.getDataStage();
-        Toast.makeText(getApplicationContext(), " il y a " +
-                String.valueOf(c.getCount()) + " stages ", Toast.LENGTH_LONG).show();
         stageBdd.close();
     }
 
