@@ -2,10 +2,12 @@ package com.example.applisuivistage;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class FicheSuiviActivity3 extends Activity {
@@ -17,6 +19,12 @@ public class FicheSuiviActivity3 extends Activity {
         //on déclare en final les données passées à l'autre interface
         final EditText conditionsStage = findViewById(R.id.editConditionsStage);
         final EditText bilanTravaux = findViewById(R.id.editBilanTravaux);
+
+        String nom ="";
+        String prenom ="";
+        Intent intent2 = getIntent();
+        nom= intent2.getStringExtra("EXTRA_Nom");
+        prenom= intent2.getStringExtra("EXTRA_Prenom");
 
         Button btnSuivant = (Button) findViewById(R.id.btnSuivant);
         Button btnAnnuler = (Button) findViewById(R.id.btnAnnuler);
@@ -55,5 +63,33 @@ public class FicheSuiviActivity3 extends Activity {
         };
         btnSuivant.setOnClickListener((ecouteur));
         btnAnnuler.setOnClickListener((ecouteur));
+
+        final DAOBdd FicheSuiviBdd = new DAOBdd(this);
+        //on ouvre la base de données
+        FicheSuiviBdd.open();
+        Cursor c = FicheSuiviBdd.getIDStage(nom, prenom);
+        // champs dans lesquelles afficher les colonnes
+        c.moveToFirst();
+
+        // final pour l'update d'une visite
+        final int _idStageVisite = c.getInt(c.getColumnIndex("_id"));
+
+        Cursor c1 = FicheSuiviBdd.getIDStageVisite(_idStageVisite);
+
+        if(c1.getCount()>0){
+            //recuperation des infos de visite en fonction des listes déroulantes
+            Cursor c2 = FicheSuiviBdd.getInfosVisite(_idStageVisite);
+            // champs dans lesquelles afficher les colonnes
+            c2.moveToFirst();
+            // The Cursor is now set to the right position
+            TextView Conditions = (TextView)findViewById(R.id.editConditionsStage);
+            Conditions.setText(c2.getString(c2.getColumnIndex("Conditions")));
+
+            TextView Bilan = (TextView)findViewById(R.id.editBilanTravaux);
+            Bilan.setText(c2.getString(c2.getColumnIndex("Bilan")));
+        }else{
+
+        }
+        c1.close();
     }
 }

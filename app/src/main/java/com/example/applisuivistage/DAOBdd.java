@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DAOBdd {
-    static final int VERSION_BDD =41;
+    static final int VERSION_BDD =42;
     private static final String NOM_BDD = "SuiviStageTestBdd.db";
     //table etudiant
     static final String TABLE_ETUDIANT = "Etudiant";
@@ -142,10 +142,8 @@ public class DAOBdd {
     }
     public Cursor updateEtudiant(String nom, String prenom, String specialite){
         return db.rawQuery("UPDATE "+ TABLE_ETUDIANT
-                + "SET " + COL_SPECIALITE + " =\"" + specialite
-                + " FROM " + TABLE_ETUDIANT
-                +  "ETUD INNER JOIN " + TABLE_STAGE + " STA ON ETUD."+COL_IDETUDIANT+" = STA."+COL_IDETUDIANT_STAGE
-                + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
+                + " SET " + COL_SPECIALITE + " =\"" + specialite
+                + "\" WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
     }
 
     public long insererEntreprise (Entreprise uneEntreprise){
@@ -164,11 +162,12 @@ public class DAOBdd {
 
     public Cursor updateEntreprise(String nom, String prenom, String entreprise){
         return db.rawQuery("UPDATE "+ TABLE_ENTREPRISE
-                + "SET " + COL_NOMSOCIETE + " =\"" + entreprise
-                + " FROM " + TABLE_ENTREPRISE
-                +  "ENT INNER JOIN " + TABLE_STAGE + " STA ON ENT."+COL_IDENTREPRISE+" = STA."+COL_IDENTREPRISE_STAGE
-                + " INNER JOIN " + TABLE_ETUDIANT + " ETUD ON STA."+COL_IDETUDIANT_STAGE+" = ETUD."+COL_IDETUDIANT
-                + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
+                + " SET " + COL_NOMSOCIETE + " =\"" + entreprise
+                + "\" WHERE " + COL_IDENTREPRISE
+                + " = (SELECT " + COL_IDENTREPRISE_STAGE + " FROM STAGE STA"
+                        + " INNER JOIN " + TABLE_ETUDIANT + " ETUD ON STA."+COL_IDETUDIANT_STAGE+" = ETUD."+COL_IDETUDIANT
+                        + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\""
+                        + "AND " + COL_IDENTREPRISE_STAGE + " = Entreprise.\"" + COL_IDENTREPRISE +"\")", null);
     }
 
     public long insererStage (Stage unStage){
@@ -202,7 +201,7 @@ public class DAOBdd {
     }
 
     public Cursor getIDStage(String nom, String prenom){
-        return db.rawQuery("SELECT "+ COL_IDSTAGE +" FROM " + TABLE_STAGE
+        return db.rawQuery("SELECT STA."+COL_IDSTAGE +" FROM " + TABLE_STAGE
                 + " STA INNER JOIN " + TABLE_ETUDIANT + " ETUD ON STA."+COL_IDETUDIANT_STAGE+" = ETUD."+COL_IDETUDIANT
                 + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
     }
@@ -223,12 +222,13 @@ public class DAOBdd {
 
     public Cursor updateProfesseur(String nom, String prenom, String tuteur, String mail){
         return db.rawQuery("UPDATE "+ TABLE_PROFESSEUR
-                + "SET " + COL_IDENTITEPROF + " =\"" + tuteur + ", "
+                + " SET " + COL_IDENTITEPROF + " =\"" + tuteur + "\", "
                 + COL_EMAILPROF + " =\"" + mail
-                + " FROM " + TABLE_PROFESSEUR
-                +  "PROF INNER JOIN " + TABLE_STAGE + " STA ON PROF."+COL_IDPROFESSEUR+" = STA."+COL_IDPROFESSEUR_STAGE
-                + " INNER JOIN " + TABLE_ETUDIANT + " ETUD ON STA."+COL_IDETUDIANT_STAGE+" = ETUD."+COL_IDETUDIANT
-                + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
+                + "\" WHERE " + COL_IDPROFESSEUR
+                + " = (SELECT " + COL_IDPROFESSEUR_STAGE + " FROM STAGE STA"
+                        + " INNER JOIN " + TABLE_ETUDIANT + " ETUD ON STA."+COL_IDETUDIANT_STAGE+" = ETUD."+COL_IDETUDIANT
+                        + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\""
+                        + "AND " + COL_IDPROFESSEUR_STAGE + " = Professeur.\"" + COL_IDPROFESSEUR +"\")", null);
     }
 
     public long insererTuteur (Tuteur unTuteur){
@@ -247,13 +247,15 @@ public class DAOBdd {
 
     public Cursor updateTuteur(String nom, String prenom, String tuteur, String tel, String mail){
         return db.rawQuery("UPDATE "+ TABLE_TUTEUR
-                + "SET " + COL_IDENTITETUTEUR + " =\"" + tuteur + ", "
-                + COL_NUMTELTUTEUR + " =\"" + tel + ", "
+                + " SET " + COL_IDENTITETUTEUR + " =\"" + tuteur + "\", "
+                + COL_NUMTELTUTEUR + " =\"" + tel + "\", "
                 + COL_EMAILTUTEUR + " =\"" + mail
-                + " FROM " + TABLE_TUTEUR
-                +  "TUT INNER JOIN " + TABLE_STAGE + " STA ON TUT."+COL_IDTUTEUR+" = STA."+COL_IDTUTEUR_STAGE
-                + " INNER JOIN " + TABLE_ETUDIANT + " ETUD ON STA."+COL_IDETUDIANT_STAGE+" = ETUD."+COL_IDETUDIANT
-                + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
+                + "\" WHERE " + COL_IDTUTEUR
+                + " = (SELECT " + COL_IDTUTEUR_STAGE + " FROM STAGE STA"
+                        + " INNER JOIN " + TABLE_ETUDIANT + " ETUD ON STA."+COL_IDETUDIANT_STAGE+" = ETUD."+COL_IDETUDIANT
+                        + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\""
+                        + "AND " + COL_IDTUTEUR_STAGE + " = Tuteur.\"" + COL_IDTUTEUR +"\")", null);
+
     }
 
     public long insererDate (Date unDate){
@@ -297,15 +299,19 @@ public class DAOBdd {
     public Cursor updateVisite(int _idStageVisite, String dateVisite, String conditionsStages, String bilanTravaux, String ressourcesOutils, String conclusion,
                                String selectedRadioJury, String selectedRadioOpportunite, String selectedRadioSiOpportunite){
         return db.rawQuery("UPDATE "+ TABLE_VISITE
-                + "SET " + COL_IDSTAGE_VISITE + " =\"" + _idStageVisite + ", "
-                + COL_DATEVISITE + " =\"" + dateVisite + ", "
-                + COL_CONDITIONS + " =\"" + conditionsStages + ", "
-                + COL_BILAN + " =\"" + bilanTravaux + ", "
-                + COL_RESSOURCES + " =\"" + ressourcesOutils + ", "
-                + COL_CONCLUSION + " =\"" + conclusion + ", "
-                + COL_JURY + " =\"" + selectedRadioJury + ", "
-                + COL_OPPORTUNITE + " =\"" + selectedRadioOpportunite + ", "
+                + " SET " + COL_IDSTAGE_VISITE + " =\"" + _idStageVisite + "\", "
+                + COL_DATEVISITE + " =\"" + dateVisite + "\", "
+                + COL_CONDITIONS + " =\"" + conditionsStages + "\", "
+                + COL_BILAN + " =\"" + bilanTravaux + "\", "
+                + COL_RESSOURCES + " =\"" + ressourcesOutils + "\", "
+                + COL_CONCLUSION + " =\"" + conclusion + "\", "
+                + COL_JURY + " =\"" + selectedRadioJury + "\", "
+                + COL_OPPORTUNITE + " =\"" + selectedRadioOpportunite + "\", "
                 + COL_SIOPPORTUNITE + " =\"" + selectedRadioSiOpportunite
+                + "\" WHERE " + COL_IDSTAGE_VISITE + " =\"" + _idStageVisite +"\"", null);
+    }
+    public Cursor getInfosVisite(int _idStageVisite){
+        return db.rawQuery("SELECT * FROM " + TABLE_VISITE
                 + " WHERE " + COL_IDSTAGE_VISITE + " =\"" + _idStageVisite +"\"", null);
     }
 }

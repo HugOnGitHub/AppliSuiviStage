@@ -93,5 +93,27 @@ public class FicheSuiviActivity2 extends Activity {
 
         TextView EmailTuteur = (TextView)findViewById(R.id.editTextMailEntrep);
         EmailTuteur.setText(c.getString(c.getColumnIndex("EmailTuteur")));
+
+        Cursor c1 = FicheSuiviBdd.getIDStage(nom, prenom);
+        // champs dans lesquelles afficher les colonnes
+        c1.moveToFirst();
+
+        // final pour l'update d'une visite
+        final int _idStageVisite = c1.getInt(c1.getColumnIndex("_id"));
+
+        Cursor c2 = FicheSuiviBdd.getIDStageVisite(_idStageVisite);
+
+        if(c2.getCount()>0){
+            //recuperation des infos de visite en fonction des listes déroulantes
+            Cursor c3 = FicheSuiviBdd.getInfosVisite(_idStageVisite);
+            // champs dans lesquelles afficher les colonnes
+            c3.moveToFirst();
+            // The Cursor is now set to the right position
+            TextView DateVisite = (TextView)findViewById(R.id.editTextDateVisite);
+            DateVisite.setText(c3.getString(c3.getColumnIndex("DateVisite")));
+        }else{
+
+        }
+        c2.close();
     }
 }

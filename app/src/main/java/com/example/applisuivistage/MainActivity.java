@@ -48,11 +48,19 @@ public class MainActivity extends AppCompatActivity {
         btnAfficherStages.setOnClickListener(ecouteur);
         btnFicheSuivi.setOnClickListener(ecouteur);
 
-        remplirTableEtudiant();
-        remplirTableProfesseur();
-        remplirTableTuteur();
-        remplirTableEntreprise();
-        remplirTableStage();
+        final DAOBdd CheckBdd = new DAOBdd(this);
+        //on ouvre la base de données
+        CheckBdd.open();
+        Cursor c = CheckBdd.getDataEtudiant();
+        if(c.getCount()>0){
+
+        }else {
+            remplirTableEtudiant();
+            remplirTableProfesseur();
+            remplirTableTuteur();
+            remplirTableEntreprise();
+            remplirTableStage();
+        }
         }
 
     public void remplirTableEtudiant() {
