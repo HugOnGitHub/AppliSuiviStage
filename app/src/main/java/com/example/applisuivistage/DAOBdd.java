@@ -146,6 +146,10 @@ public class DAOBdd {
                 + "\" WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
     }
 
+
+
+
+
     public long insererEntreprise (Entreprise uneEntreprise){
         //Création d'un ContentValues (fonctionne comme une HashMap)
         ContentValues values = new ContentValues();
@@ -169,6 +173,10 @@ public class DAOBdd {
                         + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\""
                         + "AND " + COL_IDENTREPRISE_STAGE + " = Entreprise.\"" + COL_IDENTREPRISE +"\")", null);
     }
+
+
+
+
 
     public long insererStage (Stage unStage){
         //Création d'un ContentValues (fonctionne comme une HashMap)
@@ -206,6 +214,10 @@ public class DAOBdd {
                 + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\"", null);
     }
 
+
+
+
+
     public long insererProfesseur (Professeur unProfesseur){
         //Création d'un ContentValues (fonctionne comme une HashMap)
         ContentValues values = new ContentValues();
@@ -230,6 +242,10 @@ public class DAOBdd {
                         + " WHERE " + COL_NOMETUDIANT + " =\"" + nom + "\" AND " + COL_PRENOMETUDIANT + " =\"" + prenom +"\""
                         + "AND " + COL_IDPROFESSEUR_STAGE + " = Professeur.\"" + COL_IDPROFESSEUR +"\")", null);
     }
+
+
+
+
 
     public long insererTuteur (Tuteur unTuteur){
         //Création d'un ContentValues (fonctionne comme une HashMap)
@@ -258,6 +274,10 @@ public class DAOBdd {
 
     }
 
+
+
+
+
     public long insererDate (Date unDate){
         //Création d'un ContentValues (fonctionne comme une HashMap)
         ContentValues values = new ContentValues();
@@ -270,6 +290,10 @@ public class DAOBdd {
     public Cursor getDataDate(){
         return db.rawQuery("SELECT * FROM Date", null);
     }
+
+
+
+
 
     public long insererVisite (Visite uneVisite){
         //Création d'un ContentValues (fonctionne comme une HashMap)
