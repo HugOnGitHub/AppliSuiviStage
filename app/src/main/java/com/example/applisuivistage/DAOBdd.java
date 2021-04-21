@@ -6,8 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DAOBdd {
-    static final int VERSION_BDD =42;
-    private static final String NOM_BDD = "SuiviStageTestBdd.db";
+    static final int VERSION_BDD =1;
+    private static final String NOM_BDD = "BDDSuiviStage.db";
     //table etudiant
     static final String TABLE_ETUDIANT = "Etudiant";
     static final String COL_IDETUDIANT = "_id";
